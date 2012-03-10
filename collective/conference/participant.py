@@ -44,28 +44,52 @@ class IParticipant(form.Schema, IImageScaleTraversable):
         required=False
     )
 
-    description = schema.Text(
-        title=u"Short Bio",
-        description=(u"Where you're from, where you work " +
-                    "/ study, brief self-description"),
-        required=True
-    )
-    is_vegetarian = schema.Bool(
-        title=u"Vegetarian?",
-        required=False
-    )
-    tshirt_size = schema.Choice(
-        title=u"T-shirt size",
-        vocabulary="collective.conference.vocabulary.tshirtsize",
-        required=False
-    )
     publishinfo = schema.Bool(
         title=u"Show me in attendee list",
         description=u"Check this if you wish your name and contact info" +
                     " to be published in our attendee listing",
         required=False
     )
-    
+
+    organization = schema.TextLine(
+        title=u"Organization / Company",
+        required=False,
+    )
+
+    position = schema.TextLine(
+        title=u"Position / Role in Organization",
+        required=False,
+    )
+
+    country = schema.Choice(
+        title=u"Country",
+        description=u"Where you are from",
+        required=False,
+        vocabulary="collective.conference.vocabulary.countries"
+    )
+
+    description = schema.Text(
+        title=u"Short Bio",
+        description=(u"Tell us more about yourself"),
+        required=False,
+    )
+
+    is_vegetarian = schema.Bool(
+        title=u"Vegetarian?",
+        required=False
+    )
+
+    tshirt_size = schema.Choice(
+        title=u"T-shirt size",
+        vocabulary="collective.conference.vocabulary.tshirtsize",
+        required=False
+    )
+
+    photo = NamedBlobImage(
+        title=u"Photo",
+        description=u"Your photo or avatar",
+        required=False
+    )
 
 
 # Custom content-type class; objects created for this content type will

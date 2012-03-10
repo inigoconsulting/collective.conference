@@ -29,7 +29,8 @@ setup(name='collective.conference',
           'plone.app.dexterity',
           'plone.namedfile [blobs]',
           'collective.miscbehaviors',
-          'plone.formwidget.captcha'
+          'plone.formwidget.captcha',
+          'incf.countryutils'
           # -*- Extra requirements: -*-
       ],
       entry_points="""
