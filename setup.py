@@ -30,7 +30,10 @@ setup(name='collective.conference',
           'plone.namedfile [blobs]',
           'collective.miscbehaviors',
           'plone.formwidget.captcha',
-          'incf.countryutils'
+          'incf.countryutils',
+          'collective.js.fullcalendar',
+          'collective.js.jqueryui',
+          'Products.AdvancedQuery'
           # -*- Extra requirements: -*-
       ],
       entry_points="""

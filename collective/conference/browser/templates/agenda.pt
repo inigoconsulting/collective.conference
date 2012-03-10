@@ -1,0 +1,43 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      metal:use-macro="here/main_template/macros/master">
+<head>
+</head>
+<body>
+   <div metal:fill-slot="content">
+      <div id="content">
+      <style>
+.fc-agenda-slots td div {height: 30px}
+.fc-event-title {
+   font-size:15px;
+   font-weight:bold;
+}
+
+.fc-view > div > div {
+   height:700px !important;
+}
+      </style>
+      <script tal:content="structure view/script">
+      </script>
+
+      <tal:block repeat="day view/days">
+         <div>
+            <h2 tal:content="string:${day/year}-${day/month}-${day/date}"/>
+
+            <tal:block repeat="room view/rooms">
+               <div style="width:150px;margin:5px;float:left;text-align:center">
+               <h3 tal:content="room/title"/>
+               <div id="calendar-day-1-room-1"
+                  tal:attributes="id string:calendar-${day/id}-${room/id}">
+               </div>
+               </div>
+               </tal:block>
+            <div class="visualClear"></div>
+         </div>
+         </tal:block>
+      </div>
+   </div>
+</body>
+</html>
