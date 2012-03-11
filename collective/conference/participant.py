@@ -39,17 +39,19 @@ class IParticipant(form.Schema, IImageScaleTraversable):
         title=u"Email address",
         required=True,
     )
+
+    description = schema.Text(
+        title=u"Short Bio",
+        description=(u"Tell us more about yourself"),
+        required=False,
+    a
+    )
     phone = schema.TextLine(
         title=u"Phone number",
         required=False
     )
 
-    publishinfo = schema.Bool(
-        title=u"Show me in attendee list",
-        description=u"Check this if you wish your name and contact info" +
-                    " to be published in our attendee listing",
-        required=False
-    )
+
 
     organization = schema.TextLine(
         title=u"Organization / Company",
@@ -68,11 +70,7 @@ class IParticipant(form.Schema, IImageScaleTraversable):
         vocabulary="collective.conference.vocabulary.countries"
     )
 
-    description = schema.Text(
-        title=u"Short Bio",
-        description=(u"Tell us more about yourself"),
-        required=False,
-    )
+
 
     is_vegetarian = schema.Bool(
         title=u"Vegetarian?",
@@ -82,6 +80,13 @@ class IParticipant(form.Schema, IImageScaleTraversable):
     tshirt_size = schema.Choice(
         title=u"T-shirt size",
         vocabulary="collective.conference.vocabulary.tshirtsize",
+        required=False
+    )
+
+    publishinfo = schema.Bool(
+        title=u"Show me in attendee list",
+        description=u"Check this if you wish your name and contact info" +
+                    " to be published in our attendee listing",
         required=False
     )
 
