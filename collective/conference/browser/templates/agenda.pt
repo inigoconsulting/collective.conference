@@ -18,25 +18,57 @@
 .fc-view > div > div {
    height:700px !important;
 }
+
+.fc-agenda .fc-agenda-axis {
+   width:20px;
+}
       </style>
       <script tal:content="structure view/script">
       </script>
+      <script>
+         $(document).ready(function (){
+            $('#agenda-tabs > .nav-tabs').tabs("#agenda-tabs > .panes > div",
+               {current:'active',
+               onClick: function (obj, idx) {
+                  $.each(this.getTabs(), function (idx, tab) {
+                     $(tab).parent().removeClass('active');
+                  });
+                  $($('#agenda-tabs > .nav-tabs > li')[idx]).addClass('active');
+               }});
+         })
+      </script>
 
-      <tal:block repeat="day view/days">
-         <div>
-            <h2 tal:content="string:${day/year}-${day/month}-${day/date}"/>
-
-            <tal:block repeat="room view/rooms">
+      <div id="agenda-tabs">
+         <ul class="nav nav-tabs">
+            <li tal:repeat="day view/days">
+               <tal:def define="curday python:day['id'] + 1">
+                  <a tal:attributes="href string:#calendar-${curday};"
+                     tal:content="string:Day ${curday}"
+                     >
+                  </a>
+               </tal:def>
+            </li>
+         </ul>
+         <div class="panes">
+            <tal:block repeat="day view/days">
+            <div tal:attributes="id string:calendar-${day/id};">
+               <tal:def define="curday python:day['id'] + 1">
+               <h2 tal:content="string:Schedule for Day ${curday}"></h2>
+               <tal:block repeat="room view/rooms">
                <div style="width:150px;margin:5px;float:left;text-align:center">
-               <h3 tal:content="room/title"/>
-               <div id="calendar-day-1-room-1"
-                  tal:attributes="id string:calendar-${day/id}-${room/id}">
-               </div>
+                  <h3 tal:content="room/title"></h3>
+                  <div id="calendar-day-1-room-1"
+                     class="conference-calendar"
+                     tal:attributes="id string:calendar-${day/id}-${room/id}">
+                  </div>
                </div>
                </tal:block>
-            <div class="visualClear"></div>
-         </div>
-         </tal:block>
+               <div class="visualClear"></div>
+               </tal:def>
+            </div>
+            </tal:block>
+        </div>
+</div>
       </div>
    </div>
 </body>

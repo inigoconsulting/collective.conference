@@ -28,14 +28,8 @@ class IConference(form.Schema, IImageScaleTraversable):
     """
     A conference event
     """
-    
-    # If you want a schema-defined interface, delete the form.model
-    # line below and delete the matching file in the models sub-directory.
-    # If you want a model-based interface, edit
-    # models/conference.xml to define the content type
-    # and add directives here as necessary.
-    
-    form.model("models/conference.xml")
+
+    logo_image = NamedBlobImage(title=u'Logo')
 
 
 # Custom content-type class; objects created for this content type will
