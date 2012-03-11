@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 import os
 
-version = '1.0'
+version = '1.0a1'
 
 setup(name='collective.conference',
       version=version,
@@ -28,7 +28,7 @@ setup(name='collective.conference',
           'setuptools',
           'plone.app.dexterity',
           'plone.namedfile [blobs]',
-          'collective.miscbehaviors',
+          'collective.miscbehaviors>=0.2',
           'plone.formwidget.captcha',
           'incf.countryutils',
           'collective.js.fullcalendar',
