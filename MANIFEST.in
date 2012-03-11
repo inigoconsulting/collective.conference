@@ -1,0 +1,3 @@
+recursive-include diazotheme *
+recursive-include docs *
+global-exclude *pyc
