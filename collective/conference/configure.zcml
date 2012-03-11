@@ -33,4 +33,10 @@
         for=".conference.IConference"
     />
 
+    <browser:page
+        name="collective-conference-macros"
+        for="*"
+        permission="zope2.View"
+        class=".browser.macros.Macros"/>
+
 </configure>

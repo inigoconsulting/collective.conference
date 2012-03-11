@@ -5,19 +5,7 @@
       metal:use-macro="here/main_template/macros/master">
 <head>
    <metal:block fill-slot="style_slot">
-      <style>
-      .banner {
-        background-color: #F5F5F5;
-        background-image: -moz-linear-gradient(center top , #FFFFFF, #F5F5F5);
-        background-repeat: repeat-x;
-        border: 1px solid #DDDDDD;
-        border-radius: 3px 3px 3px 3px;
-        box-shadow: 0 1px 0 #FFFFFF inset;
-        height:300px;
-        padding:20px;
-     }
-
-      </style> 
+      <metal:block use-macro="here/@@collective-conference-macros/macros/styles"/>
    </metal:block>
 </head>
 <body>
@@ -26,19 +14,8 @@
    <div metal:fill-slot="content-core">
       <div class="banner">
          <div class="row">
-         <div class="navbar">
-            <div class="navbar-inner">
-               <div class="container">
-            <ul class="nav pull-right">
-                <li class="divider-vertical"></li>
-               <li><a tal:attributes="href string:${here/absolute_url}/agenda">Agenda</a></li>
-                <li class="divider-vertical"></li>
-               <li><a tal:attributes="href string:${here/absolute_url}/location">Location</a></li>
-            </ul>
-               </div>
+            <metal:block use-macro="here/@@collective-conference-macros/macros/navbar"/>
          </div>
-      </div>
-   </div>
             <div class="row">
                <div class="offset1 span6">
                   <h1 tal:content="context/title"/>

@@ -1,0 +1,42 @@
+<metal:block define-macro="styles">
+      <style>
+      .banner {
+        background-color: #F5F5F5;
+        background-image: -moz-linear-gradient(center top , #FFFFFF, #F5F5F5);
+        background-repeat: repeat-x;
+        border: 1px solid #DDDDDD;
+        border-radius: 3px 3px 3px 3px;
+        box-shadow: 0 1px 0 #FFFFFF inset;
+        height:300px;
+        padding:20px;
+     }
+
+     .navbar .container {
+         width:100%;
+      }
+
+      #content .navbar a.brand:link {
+         border-bottom:none;
+      }
+
+      </style> 
+</metal:block>
+
+<metal:block define-macro="navbar">
+<div class="navbar"> 
+   <div class="navbar-inner"> 
+      <div class="container"> 
+         <a class="brand" 
+            tal:content="here/title" tal:attributes="href
+            here/absolute_url">
+         </a>
+         <ul class="nav pull-right"> 
+            <li class="divider-vertical"></li> 
+            <li><a tal:attributes="href string:${here/absolute_url}/agenda">Agenda</a></li> 
+            <li class="divider-vertical"></li> 
+            <li><a tal:attributes="href string:${here/absolute_url}/location">Location</a></li> 
+         </ul>    
+      </div> 
+   </div> 
+</div>
+</metal:block>

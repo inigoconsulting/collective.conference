@@ -3,12 +3,23 @@
       xmlns:tal="http://xml.zope.org/namespaces/tal"
       xmlns:metal="http://xml.zope.org/namespaces/metal"
       metal:use-macro="here/main_template/macros/master">
-<head>
+      <head>
+
+   <metal:block fill-slot="style_slot">
+      <metal:block use-macro="here/@@collective-conference-macros/macros/styles"/>
+   </metal:block>
+
 </head>
 <body>
-   <div metal:fill-slot="content">
-      <div id="content">
+   <div metal:fill-slot="content-title"></div>
+   <div metal:fill-slot="content-description"></div>
+
+   <div metal:fill-slot="content-core">
       <style>
+
+.banner {
+   height:auto;
+}
 .fc-agenda-slots td div {height: 30px}
 .fc-event-title {
    font-size:15px;
@@ -21,6 +32,10 @@
 
 .fc-agenda .fc-agenda-axis {
    width:20px;
+}
+
+#agenda-tabs .panes {
+   padding:0 40px;
 }
       </style>
       <script tal:content="structure view/script">
@@ -37,6 +52,10 @@
                }});
          })
       </script>
+
+      <div class="banner">
+         <div class="row">
+      <metal:block use-macro="here/@@collective-conference-macros/macros/navbar"/>
 
       <div id="agenda-tabs">
          <ul class="nav nav-tabs">
@@ -68,8 +87,11 @@
             </div>
             </tal:block>
         </div>
-</div>
       </div>
+               <div class="visualClear"></div>
+
+      </div>
+   </div>
    </div>
 </body>
 </html>
