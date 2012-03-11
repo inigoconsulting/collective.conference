@@ -27,14 +27,39 @@ class ISession(form.Schema, IImageScaleTraversable):
     """
     Conference Session
     """
-    
-    # If you want a schema-defined interface, delete the form.model
-    # line below and delete the matching file in the models sub-directory.
-    # If you want a model-based interface, edit
-    # models/session.xml to define the content type
-    # and add directives here as necessary.
-    
-    form.model("models/session.xml")
+
+    form.widget(emails='plone.z3cform.textlines.TextLinesFieldWidget')
+    emails = schema.List(title=u"E-mail addresses of speakers", 
+        description=u"We will find speakers' profile in the registration " +
+                u'using these emails. One in each line', required=True,
+                value_type=schema.TextLine())
+    title = schema.TextLine(title=u"Session Title")
+    description = schema.Text(title=u"Summary", required=True)
+    session_type = schema.Choice(
+        title=u'Session Type',
+        vocabulary="collective.conference.vocabulary.sessiontype"
+    )
+    level = schema.Choice(
+        title=u'Level',
+        vocabulary="collective.conference.vocabulary.sessionlevel"
+    )
+
+    form.widget(text="plone.app.z3cform.wysiwyg.WysiwygFieldWidget")
+    text = schema.Text(
+        title=_(u"More details on proposed session"),
+        description=u'',
+        required=False,
+    )
+
+    attachment = NamedBlobFile(title=u"Attachment",
+        description=u"Attach your talks document (slide, code, etc). " + 
+                    u"If there are multiple files, include them in a zip " + 
+                    u"By uploading the file here, you hereby agreed to " + 
+                    u"grants us permission to redistribute this file",
+        required=False
+    )
+
+
 
 
 # Custom content-type class; objects created for this content type will
@@ -42,7 +67,7 @@ class ISession(form.Schema, IImageScaleTraversable):
 # methods and properties. Put methods that are mainly useful for rendering
 # in separate view classes.
 
-class Session(dexterity.Container):
+class Session(dexterity.Item):
     grok.implements(ISession)
     
     # Add your class methods and properties here

@@ -33,6 +33,12 @@
         for=".conference.IConference"
     />
 
+   <browser:defaultView
+        name="session_view"
+        for=".session.ISession"
+    />
+
+
     <browser:page
         name="collective-conference-macros"
         for="*"

@@ -23,3 +23,32 @@ class Countries(object):
 grok.global_utility(Countries, IVocabularyFactory,
         name="collective.conference.vocabulary.countries")
 
+
+class SessionTypes(object):
+
+    def __call__(self, context):
+        return SimpleVocabulary.fromValues([
+            u'Talk',
+            u'Hackfest',
+            u'Workshop',
+            u'Discussion'
+        ])
+
+grok.global_utility(SessionTypes, IVocabularyFactory,
+        name="collective.conference.vocabulary.sessiontype")
+
+class SessionLevels(object):
+
+    def __call__(self, context):
+        return SimpleVocabulary.fromValues([
+            u'Beginner',
+            u'Intermediate',
+            u'Advanced'
+        ])
+
+grok.global_utility(SessionLevels, IVocabularyFactory,
+        name="collective.conference.vocabulary.sessionlevel")
+
+
+
+

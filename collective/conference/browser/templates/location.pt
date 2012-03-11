@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      metal:use-macro="here/main_template/macros/master">
+      <head>
+
+   <metal:block fill-slot="style_slot">
+      <metal:block use-macro="here/@@collective-conference-macros/macros/styles"/>
+   </metal:block>
+
+</head>
+<body>
+   <div metal:fill-slot="content-title"></div>
+   <div metal:fill-slot="content-description"></div>
+
+   <div metal:fill-slot="content-core">
+      <div class="banner">
+         <div class="row">
+      <metal:block use-macro="here/@@collective-conference-macros/macros/navbar"/>
+   </div>
+   <h1 tal:content="here/location_title|nothing"></h1>
+
+   <tal:c condition="context/location_image">
+   <div class="row">
+    <div class="offset1 span12"
+       tal:define="scale context/@@images;
+       small python:scale.scale('location_image', width=940, height=400)">
+       <img tal:attributes="src small/url;
+       width small/width;
+       height small/height"/>
+    </div>
+   </div>
+   </tal:c>
+
+      </div>
+      <div tal:content="structure here/location_info|nothing"/>
+  </div>
+</body>
+</html>

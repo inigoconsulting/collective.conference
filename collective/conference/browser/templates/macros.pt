@@ -7,7 +7,6 @@
         border: 1px solid #DDDDDD;
         border-radius: 3px 3px 3px 3px;
         box-shadow: 0 1px 0 #FFFFFF inset;
-        height:300px;
         padding:20px;
      }
 
@@ -34,9 +33,45 @@
             <li class="divider-vertical"></li> 
             <li><a tal:attributes="href string:${here/absolute_url}/agenda">Agenda</a></li> 
             <li class="divider-vertical"></li> 
-            <li><a tal:attributes="href string:${here/absolute_url}/location">Location</a></li> 
+            <li><a tal:attributes="href string:${here/absolute_url}/locationinfo">Location</a></li> 
          </ul>    
       </div> 
    </div> 
+</div>
+</metal:block>
+
+<metal:block define-macro="datebox">
+<tal:comment replace="nothing">
+   requires these vars:
+      * month 
+      * date
+      * year
+      * startTime
+      * endTime
+      * roomName
+</tal:comment>
+<div style="border: 0px solid red; width: auto; float: right;">
+   <div style="float: right;cursor: default; background: #1A2846; font-weight: bold; width: auto; padding: 0px; color: white; font-size: 13px; text-transform: uppercase; text-align:center; -moz-box-shadow: 0 1px 3px #272727; -webkit-box-shadow: 0 1px 3px #272727; box-shadow: 0 1px 3px #272727; margin-left: 8px; text-shadow: black 0 1px 1px;">
+      <div style="font-size: 22px; padding:6px; background: #294172; margin: 0px;">Schedule</div>
+      <div style="line-height: 14px; padding: 8px;">
+         <div style="display: inline-block; width: 50px; border: 0px red solid;">
+            <div tal:content="month">Nov</div>
+            <div tal:content="date" style="font-size: 28px; font-weight: normal; margin-top: 6px; margin-bottom: 5px;">04</div>
+            <div tal:content="year">2011</div>
+         </div>
+
+         <div style="display: inline-block; width: 50px; border: 0px red solid;">
+            <div tal:content="startTime">10:00</div>
+            <div style="font-size: 28px; font-weight: normal; margin-top: 6px; margin-bottom: 5px;">To</div>
+            <div tal:content="endTime">11:00</div>
+         </div>
+      </div>
+      <tal:c condition="roomName|nothing">
+      <div style="font-size: 22px; padding:6px; background: #294172; margin: 0px;">Room</div>
+      <div style="padding-bottom: 6px;">
+         <div style="margin-top: 6px;"><strong tal:content="roomName">Auditorium</strong></div>
+      </div>
+      </tal:c>
+   </div>
 </div>
 </metal:block>

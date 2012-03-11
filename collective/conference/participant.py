@@ -85,18 +85,18 @@ class IParticipant(form.Schema, IImageScaleTraversable):
         required=False
     )
 
-    photo = NamedBlobImage(
-        title=u"Photo",
-        description=u"Your photo or avatar",
-        required=False
-    )
-
-@form.validator(field=IParticipant['photo'])
-def maxPhotoSize(value):
-    if value is not None:
-        if value.getSize()/1024 > 512:
-            raise schema.ValidationError(u"Please upload image smaller than 512KB")
-
+#    photo = NamedBlobImage(
+#        title=u"Photo",
+#        description=u"Your photo or avatar",
+#        required=False
+#    )
+#
+#@form.validator(field=IParticipant['photo'])
+#def maxPhotoSize(value):
+#    if value is not None:
+#        if value.getSize()/1024 > 512:
+#            raise schema.ValidationError(u"Please upload image smaller than 512KB")
+#
 
 # Custom content-type class; objects created for this content type will
 # be instances of this class. Use this class to add content-type specific
