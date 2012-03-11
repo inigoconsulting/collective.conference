@@ -23,6 +23,17 @@ from collective.conference import MessageFactory as _
 
 # Interface class; used to define content-type schema.
 
+from zope.schema.interfaces import IContextSourceBinder
+from zope.schema.vocabulary import SimpleVocabulary
+from Products.CMFCore.utils import getToolByName
+
+@grok.provider(IContextSourceBinder)
+def possibleRooms(context):
+    conference = context.getConference()            
+    return SimpleVocabulary.fromValues(conference.rooms)
+
+
+
 class ISession(form.Schema, IImageScaleTraversable):
     """
     Conference Session
@@ -58,6 +69,10 @@ class ISession(form.Schema, IImageScaleTraversable):
                     u"grants us permission to redistribute this file",
         required=False
     )
+
+    conferenceroom = schema.Choice(
+        title=u'Conference Room',
+        source=possibleRooms)
 
 
 

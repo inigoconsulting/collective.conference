@@ -13,11 +13,16 @@ class IProposalForm(ISession):
     form.widget(captcha=CaptchaFieldWidget)
     captcha = schema.TextLine(title=u"",
                             required=False)
+    form.omitted('conferenceroom')
 
 @form.validator(field=IProposalForm['captcha'])
 def validateCaptca(value):
     site = getSite()
     request = getRequest()
+
+    if request.getURL().endswith('kss_z3cform_inline_validation'):
+        return
+
     captcha = CaptchaValidator(site, request, None,
             IProposalForm['captcha'], None)
     captcha.validate(value)

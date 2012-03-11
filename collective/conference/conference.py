@@ -8,6 +8,7 @@ from zope.schema.vocabulary import SimpleVocabulary, SimpleTerm
 from zope.interface import invariant, Invalid
 
 from z3c.form import group, field
+from plone.i18n.normalizer.interfaces import IURLNormalizer
 
 from plone.namedfile.interfaces import IImageScaleTraversable
 from plone.namedfile.field import NamedImage, NamedFile
@@ -21,7 +22,9 @@ from plone.formwidget.contenttree import ObjPathSourceBinder
 from collective.conference import MessageFactory as _
 from plone.dexterity.utils import createContentInContainer
 
-
+from zope.component import getUtility
+from zope.component.hooks import getSite
+from Acquisition import aq_parent
 # Interface class; used to define content-type schema.
 
 class IConference(form.Schema, IImageScaleTraversable):
@@ -30,6 +33,12 @@ class IConference(form.Schema, IImageScaleTraversable):
     """
 
     logo_image = NamedBlobImage(title=u'Logo')
+
+    form.widget(rooms='plone.z3cform.textlines.TextLinesFieldWidget')
+    rooms = schema.List(
+        title=u'Available Rooms',
+        value_type=schema.TextLine()
+    )
 
     form.fieldset("location-info",
         label=_(u"Location"),
@@ -66,3 +75,13 @@ class Conference(dexterity.Container):
     grok.implements(IConference)
     
     # Add your class methods and properties here
+
+    def getConference(self):
+        site = getSite()
+        parent = self
+        while parent != site:
+            if IConference.providedBy(parent):
+                return parent
+            parent = aq_parent(parent)
+        return None
+

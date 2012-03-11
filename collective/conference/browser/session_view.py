@@ -1,7 +1,6 @@
 from five import grok
 from collective.conference.session import ISession
 from collective.conference.conference import IConference
-from collective.conference.room import IRoom
 from Acquisition import aq_parent
 from zope.component.hooks import getSite
 from Products.CMFCore.utils import getToolByName
@@ -14,10 +13,7 @@ class SessionView(grok.View):
     grok.template('session_view')
 
     def roomName(self):
-        parent = aq_parent(self.context)
-        if IRoom.providedBy(parent):
-            return parent.title
-        return None
+        return getattr(self.context, 'conferenceroom', None)
 
     def speakers(self):
         result = []

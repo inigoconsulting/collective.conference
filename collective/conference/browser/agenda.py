@@ -1,6 +1,5 @@
 from five import grok
 from collective.conference.conference import IConference
-from collective.conference.room import IRoom
 from collective.conference.session import ISession
 from Products.CMFCore.utils import getToolByName
 import json
@@ -15,18 +14,6 @@ class AgendaView(grok.View):
     grok.name('agenda')
     grok.template('agenda')
 
-    def rooms(self):
-        result = []
-        catalog = getToolByName(self.context, 'portal_catalog')
-        for brain in catalog({
-            'portal_type':'collective.conference.room',
-            'path': { 'query': '/'.join(self.context.getPhysicalPath()),
-                        'depth': 1 }
-            }):
-
-            result.append(brain.getObject())
-        return result
-        
     def days(self):
         result = []
         delta = self.context.endDate-self.context.startDate
@@ -43,7 +30,7 @@ class AgendaView(grok.View):
         initcode = ''
 
         for day in self.days():
-            for room in self.rooms():
+            for idx, room in enumerate(self.context.rooms):
                 initcode += """
                     $('#calendar-%s-%s').fullCalendar($.extend({
                         events: "%s",
@@ -53,8 +40,11 @@ class AgendaView(grok.View):
                     }, opts))
                 """ % (
                     day['id'],
-                    room.id, 
-                    '%s/events.json' % room.absolute_url(),
+                    idx, 
+                    '%s/events.json?room=%s' % (
+                        self.context.absolute_url(),
+                        room
+                    ),
                     day['year'],
                     day['month'] - 1,
                     day['date']
@@ -94,15 +84,17 @@ class AgendaView(grok.View):
         return result
 
 class EventJson(grok.View):
-    grok.context(IRoom)
+    grok.context(IConference)
     grok.name('events.json')
 
     def render(self):
         self.request.response.setHeader('Content-Type','text/json')
         start = int(self.request.get('start', 0))
         end = int(self.request.get('end', 0))
+        room = self.request.get('room', '')
         result = []
-        for event in self.events(datetime.fromtimestamp(start),
+        for event in self.events(room,
+                                datetime.fromtimestamp(start),
                                 datetime.fromtimestamp(end)):
             result.append({
                 'id':event.id,
@@ -114,15 +106,12 @@ class EventJson(grok.View):
             })
         return json.dumps(result)
 
-    def events(self, start, end):
+    def events(self, room, start, end):
         catalog = getToolByName(self.context, 'portal_catalog')
 
         queries = [
             Eq('portal_type', 'collective.conference.session'),
-            Generic('path',
-                {'query': '/'.join(self.context.getPhysicalPath()),
-                     'depth': 2}
-            ),
+            Eq('conferenceroom', room),
             Ge('start', start),
             Le('end', end)
         ]

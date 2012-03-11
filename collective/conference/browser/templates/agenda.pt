@@ -73,12 +73,12 @@
             <div tal:attributes="id string:calendar-${day/id};">
                <tal:def define="curday python:day['id'] + 1">
                <h2 tal:content="string:Schedule for Day ${curday}"></h2>
-               <tal:block repeat="room view/rooms">
+               <tal:block repeat="room context/rooms">
                <div style="width:150px;margin:5px;float:left;text-align:center">
-                  <h3 tal:content="room/title"></h3>
+                  <h3 tal:content="room"></h3>
                   <div id="calendar-day-1-room-1"
                      class="conference-calendar"
-                     tal:attributes="id string:calendar-${day/id}-${room/id}">
+                     tal:attributes="id string:calendar-${day/id}-${repeat/room/index}">
                   </div>
                </div>
                </tal:block>

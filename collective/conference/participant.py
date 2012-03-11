@@ -44,8 +44,8 @@ class IParticipant(form.Schema, IImageScaleTraversable):
         title=u"Short Bio",
         description=(u"Tell us more about yourself"),
         required=False,
-    a
     )
+
     phone = schema.TextLine(
         title=u"Phone number",
         required=False

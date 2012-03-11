@@ -14,7 +14,6 @@
   <property name="allowed_content_types">
       <element value="collective.conference.participant"/>
       <element value="collective.conference.session"/>
-      <element value="collective.conference.room"/>
       <element value="Folder"/>
   </property>
   <property name="allow_discussion">False</property>
