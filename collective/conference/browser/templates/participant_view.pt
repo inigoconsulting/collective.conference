@@ -25,13 +25,12 @@
            </div>
          </div>
        </div>
-       <div class="row">
-         <div class="span12">
+       <section id="profile">
+       <div class="page-header">
            <h3>Speaker Profile</h3>
-           </div>
        </div>  
-      <div class="row-fluid">
-        <div class="span4">
+      <div class="row">
+        <div class="offset1 span3">
              <img src="http://upload.wikimedia.org/wikipedia/en/7/76/Darth_Vader.jpg"/>
         </div>
         <div class="span8">
@@ -45,12 +44,17 @@
           </dl>
         </div>
       </div>
-      <div class="row-fluid">
-        <div class="span12">
+      </section>
+      <section id="topic">
+      <div class="row">
+        <div class="page-header">
           <h3>Topic Presented</h3>
+        </div>
+        <div class="offset1 span11">
           <p>How we decide to switch to fedora after the destruction of the Death Star</p>
         </div>
       </div>
+      </section>
    </div>
 </body>
 </html>
