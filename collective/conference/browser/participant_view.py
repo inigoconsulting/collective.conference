@@ -3,9 +3,9 @@ from collective.conference.conference import IConference
 
 grok.templatedir('templates')
 
-class AttendanceView(grok.View):
+class ParticipantView(grok.View):
     grok.context(IConference)
-    grok.template('attendance_list')
-    grok.name('attendance')
+    grok.template('participant_view')
+    grok.name('participant')
 
 
