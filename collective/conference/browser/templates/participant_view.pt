@@ -1,0 +1,60 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      metal:use-macro="here/main_template/macros/master">
+      <head>
+
+   <metal:block fill-slot="style_slot">
+      <metal:block use-macro="here/@@collective-conference-macros/macros/styles"/>
+   </metal:block>
+
+</head>
+<body>
+   <div metal:fill-slot="content-title"></div>
+   <div metal:fill-slot="content-description"></div>
+
+   <div metal:fill-slot="content-core">
+      <div class="banner">
+         <div class="row">
+           <metal:block use-macro="here/@@collective-conference-macros/macros/navbar"/>
+         </div>
+         <div class="row">
+           <div class="span12">
+             <h2>Who is the speaker</h2>
+           </div>
+         </div>
+       </div>
+       <section id="profile">
+       <div class="page-header">
+           <h3>Speaker Profile</h3>
+       </div>  
+      <div class="row">
+        <div class="offset1 span3">
+             <img src="http://upload.wikimedia.org/wikipedia/en/7/76/Darth_Vader.jpg"/>
+        </div>
+        <div class="span8">
+          <dl class="dl-horizontal">
+            <dt>Name:</dt>
+            <dd>Anakin Skywalker</dd>
+            <dt>Email:</dt>
+            <dd>vader@empire.com</dd>
+            <dt>Origin:</dt>
+            <dd>Tatooine</dd>
+          </dl>
+        </div>
+      </div>
+      </section>
+      <section id="topic">
+      <div class="row">
+        <div class="page-header">
+          <h3>Topic Presented</h3>
+        </div>
+        <div class="offset1 span11">
+          <p>How we decide to switch to fedora after the destruction of the Death Star</p>
+        </div>
+      </div>
+      </section>
+   </div>
+</body>
+</html>
