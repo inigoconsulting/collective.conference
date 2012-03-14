@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      metal:use-macro="here/main_template/macros/master">
+      <head>
+
+   <metal:block fill-slot="style_slot">
+      <metal:block use-macro="here/@@collective-conference-macros/macros/styles"/>
+   </metal:block>
+
+</head>
+<body>
+   <div metal:fill-slot="content-title"></div>
+   <div metal:fill-slot="content-description"></div>
+
+   <div metal:fill-slot="content-core">
+      <div class="banner">
+         <div class="row">
+           <metal:block use-macro="here/@@collective-conference-macros/macros/navbar"/>
+         </div>
+         <div class="row">
+           <div class="span12">
+             <h2>Here you are the attendance sheet</h2>
+           </div>
+         </div>
+      </div>
+         <div class="row">
+           <div class="attendee offset1 span12">
+             <table class="table table-condensed table-striped">
+               <thead>
+                 <th>Name</th>
+                 <th>Email</th>
+                 <th>T-Shirt Size</th>
+                 <th>Vegetarian?</th>
+               </thead>
+               <tbody>
+                 <tr>
+                   <td>Evil Bin Overlord</td>
+                   <td>evil@overload.com</td>
+                   <td>XXXL</td>
+                   <td>NO</td>
+                 </tr>
+                 <tr>
+                   <td>Benevolent Bin Overlord</td>
+                   <td>good@overload.com</td>
+                   <td>XXXL</td>
+                   <td>NO</td>
+                 </tr>
+               </tbody>
+             </table>
+           </div>
+         </div>
+   </div>
+</body>
+</html>
