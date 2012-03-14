@@ -9,11 +9,14 @@ grok.templatedir('templates')
 
 class SessionView(grok.View):
     grok.context(ISession)
-    grok.name('session_view')
+    grok.name('view')
     grok.template('session_view')
 
     def roomName(self):
-        return getattr(self.context, 'conferenceroom', None)
+        rooms = getattr(self.context, 'conference_rooms', [])
+        if rooms:
+            return ', '.join(rooms)
+        return None
 
     def speakers(self):
         result = []

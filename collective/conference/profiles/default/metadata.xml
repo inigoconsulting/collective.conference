@@ -1,6 +1,10 @@
 <metadata>
-  <version>1</version>
+  <version>2</version>
     <dependencies>
         <dependency>profile-plone.app.dexterity:default</dependency>
+        <dependency>profile-collective.js.fullcalendar:default</dependency>
+        <dependency>profile-collective.miscbehaviors:default</dependency>
+        <dependency>profile-plone.formwidget.captcha:default</dependency>
+        <dependency>profile-collective.js.jqueryui:default</dependency>
     </dependencies>
 </metadata>

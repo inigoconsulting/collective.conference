@@ -111,7 +111,7 @@ class EventJson(grok.View):
 
         queries = [
             Eq('portal_type', 'collective.conference.session'),
-            Eq('conferenceroom', room),
+            Eq('conference_rooms', room),
             Ge('start', start),
             Le('end', end)
         ]

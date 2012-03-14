@@ -29,12 +29,12 @@
   <!-- -*- extra stuff goes here -*- -->
 
     <browser:defaultView
-        name="conference_view"
+        name="view"
         for=".conference.IConference"
     />
 
    <browser:defaultView
-        name="session_view"
+        name="view"
         for=".session.ISession"
     />
 
@@ -44,5 +44,9 @@
         for="*"
         permission="zope2.View"
         class=".browser.macros.Macros"/>
+
+   <adapter name="conference_rooms" factory=".indexer.c_conference_rooms"/>
+   <adapter name="conference_rooms" factory=".indexer.s_conference_rooms"/>
+
 
 </configure>

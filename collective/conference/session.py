@@ -70,9 +70,10 @@ class ISession(form.Schema, IImageScaleTraversable):
         required=False
     )
 
-    conferenceroom = schema.Choice(
-        title=u'Conference Room',
-        source=possibleRooms)
+    conference_rooms = schema.List(
+        title=u'Conference Rooms',
+        value_type=schema.Choice(source=possibleRooms)
+    )
 
 
 

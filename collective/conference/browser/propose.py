@@ -13,7 +13,7 @@ class IProposalForm(ISession):
     form.widget(captcha=CaptchaFieldWidget)
     captcha = schema.TextLine(title=u"",
                             required=False)
-    form.omitted('conferenceroom')
+    form.omitted('conference_rooms')
 
 @form.validator(field=IProposalForm['captcha'])
 def validateCaptca(value):
@@ -31,7 +31,7 @@ def validateCaptca(value):
 class ProposalForm(form.SchemaAddForm):
     grok.name('propose')
     grok.context(IConference)
-    grok.require("zope2.Public")
+    grok.require("zope.Public")
     schema = IProposalForm
     label = u"Propose a session"
 

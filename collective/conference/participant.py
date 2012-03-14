@@ -83,13 +83,6 @@ class IParticipant(form.Schema, IImageScaleTraversable):
         required=False
     )
 
-    publishinfo = schema.Bool(
-        title=u"Show me in attendee list",
-        description=u"Check this if you wish your name and contact info" +
-                    " to be published in our attendee listing",
-        required=False
-    )
-
 #    photo = NamedBlobImage(
 #        title=u"Photo",
 #        description=u"Your photo or avatar",

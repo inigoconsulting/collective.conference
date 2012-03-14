@@ -54,7 +54,8 @@ class IConference(form.Schema, IImageScaleTraversable):
 
     location_image = NamedBlobImage(
         title=_(u"Image/Photo of location"),
-        description=_(u'Preferably 940px wide and less than 400px high')
+        description=_(u'Preferably 940px wide and less than 400px high'),
+        required=False,
     )
 
     form.widget(location_info="plone.app.z3cform.wysiwyg.WysiwygFieldWidget")
