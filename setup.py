@@ -28,12 +28,12 @@ setup(name='collective.conference',
           'setuptools',
           'plone.app.dexterity',
           'plone.namedfile [blobs]',
-          'collective.miscbehaviors>=0.2',
+          'collective.miscbehaviors>=0.2.1',
           'plone.formwidget.captcha',
           'incf.countryutils',
           'collective.js.fullcalendar',
           'collective.js.jqueryui',
-          'Products.AdvancedQuery'
+          'Products.AdvancedQuery',
           # -*- Extra requirements: -*-
       ],
       entry_points="""

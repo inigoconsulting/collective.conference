@@ -25,6 +25,8 @@ from plone.dexterity.utils import createContentInContainer
 from zope.component import getUtility
 from zope.component.hooks import getSite
 from Acquisition import aq_parent
+from collective import dexteritytextindexer
+from collective.dexteritytextindexer.behavior import IDexterityTextIndexer
 # Interface class; used to define content-type schema.
 
 class IConference(form.Schema, IImageScaleTraversable):
@@ -58,13 +60,13 @@ class IConference(form.Schema, IImageScaleTraversable):
         required=False,
     )
 
+    dexteritytextindexer.searchable('location_info')
     form.widget(location_info="plone.app.z3cform.wysiwyg.WysiwygFieldWidget")
     location_info = schema.Text(
         title=_(u"About the location"),
         description=u'',
         required=False,
     )
-
 
 
 # Custom content-type class; objects created for this content type will
@@ -74,6 +76,7 @@ class IConference(form.Schema, IImageScaleTraversable):
 
 class Conference(dexterity.Container):
     grok.implements(IConference)
+    grok.provides(IConference)
     
     # Add your class methods and properties here
 

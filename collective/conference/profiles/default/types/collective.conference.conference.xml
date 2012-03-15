@@ -27,6 +27,7 @@
      <element value="plone.app.dexterity.behaviors.metadata.IBasic"/>
      <element value="collective.miscbehaviors.behavior.bodytext.IBodyText"/>
      <element value="collective.miscbehaviors.behavior.startenddate.IStartEndDate"/>
+     <element value="collective.dexteritytextindexer.behavior.IDexterityTextIndexer"/>
    </property>
 
   <!-- View information -->
