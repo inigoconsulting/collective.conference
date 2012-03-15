@@ -33,6 +33,7 @@ setup(name='collective.conference',
           'incf.countryutils',
           'collective.js.fullcalendar',
           'collective.js.jqueryui',
+          'z3c.table',
           'Products.AdvancedQuery',
           # -*- Extra requirements: -*-
       ],

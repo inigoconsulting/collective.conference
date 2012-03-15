@@ -19,30 +19,21 @@
          <div class="row">
            <metal:block use-macro="here/@@collective-conference-macros/macros/navbar"/>
          </div>
-         <div class="row">
+         <div class="row-fluid">
            <div class="span12">
-             <h2>Here you are the attendance sheet</h2>
+             <h2 tal:content="view/title|nothing"></h2>
            </div>
          </div>
       </div>
-         <div class="row">
-           <div class="attendee offset1 span12">
-             <table class="table table-condensed table-striped">
+         <div class="row-fluid">
+           <div class="span12" tal:define="provider view/provider">
+             <table class="table table-condensed table-striped" tal:replace="structure provider/render">
                <thead>
-                 <th>Name</th>
-                 <th>Vegetarian?</th>
-                 <th>Taken?</th>
+                  <th tal:repeat="title provider/headers" tal:content="title">Name</th>
                </thead>
                <tbody>
-                 <tr>
-                   <td>Evil Bin Overlord</td>
-                   <td>NO</td>
-                   <td>YES</td>
-                 </tr>
-                 <tr>
-                   <td>Benevolent Bin Overlord</td>
-                   <td>YES</td>
-                   <td>YES</td>
+                  <tr tal:repeat="row provider/rows">
+                     <td tal:repeat="col row" tal:content="col"></td>
                  </tr>
                </tbody>
              </table>
