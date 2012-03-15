@@ -17,7 +17,7 @@ class SchemaTable(SequenceTable):
 
     def setUpColumns(self):
         cols = []
-        for field in schema.getFields(self.schema).values():
+        for name, field in schema.getFieldsInOrder(self.schema):
             column = zca.getMultiAdapter(
                 (self.context, self.request, self, field),
                 IColumn
@@ -43,8 +43,9 @@ class FieldColumn(grok.MultiAdapter, Column):
         result = self.field.query(obj, u'')
         if result is None:
             return u''
+        if self.field.__name__ == 'title':
+            return '<a href="%s">%s</a>' % (item.absolute_url(), result)
         return result
-
 
 class TableListingProvider(object):
 
