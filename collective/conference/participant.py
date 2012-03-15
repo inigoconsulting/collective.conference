@@ -17,6 +17,7 @@ from plone.app.textfield import RichText
 
 from z3c.relationfield.schema import RelationList, RelationChoice
 from plone.formwidget.contenttree import ObjPathSourceBinder
+from Products.CMFDefault.utils import checkEmailAddress
 
 from collective.conference import MessageFactory as _
 
@@ -96,12 +97,13 @@ class IParticipant(form.Schema, IImageScaleTraversable):
 #            raise schema.ValidationError(u"Please upload image smaller than 512KB")
 #
 
-# Custom content-type class; objects created for this content type will
-# be instances of this class. Use this class to add content-type specific
-# methods and properties. Put methods that are mainly useful for rendering
-# in separate view classes.
+
+@form.validator(field=IParticipant['email'])
+def emailValidator(value):
+    try:
+        return checkEmailAddress(value)
+    except:
+        raise Invalid(u"Invalid email address")
 
 class Participant(dexterity.Item):
     grok.implements(IParticipant)
-    
-    # Add your class methods and properties here

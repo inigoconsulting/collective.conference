@@ -4,4 +4,9 @@
         <indexed_attr value="conference_rooms"/>
     </index>
     <column value="conference_rooms"/>
+    <index name="emails" meta_type="KeywordIndex">
+        <indexed_attr value="emails"/>
+    </index>
+    <column value="emails"/>
+
 </object>

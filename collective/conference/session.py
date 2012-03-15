@@ -26,6 +26,8 @@ from collective.conference import MessageFactory as _
 from zope.schema.interfaces import IContextSourceBinder
 from zope.schema.vocabulary import SimpleVocabulary
 from Products.CMFCore.utils import getToolByName
+from Products.CMFDefault.utils import checkEmailAddress
+
 
 @grok.provider(IContextSourceBinder)
 def possibleRooms(context):
@@ -75,6 +77,13 @@ class ISession(form.Schema, IImageScaleTraversable):
         value_type=schema.Choice(source=possibleRooms)
     )
 
+@form.validator(field=ISession['emails'])
+def emailsValidator(value):
+    for email in value:
+        try:
+            return checkEmailAddress(email)
+        except:
+            raise Invalid(u"%s is an invalid email address" % email)
 
 
 

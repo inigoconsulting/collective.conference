@@ -48,6 +48,7 @@
 
    <adapter name="conference_rooms" factory=".indexer.c_conference_rooms"/>
    <adapter name="conference_rooms" factory=".indexer.s_conference_rooms"/>
+   <adapter name="emails" factory=".indexer.p_emails"/>
 
 
 </configure>
