@@ -66,7 +66,8 @@ class AgendaView(grok.View):
                         $.post(event.url + '/updateStartEnd',
                               { 'operation': 'resize',
                                 'dayDelta': dayDelta,
-                                'minuteDelta': minuteDelta})
+                                'minuteDelta': minuteDelta});
+                        $('.conference-calendar').fullCalendar('refetchEvents');
                },
                eventDrop: function (event, dayDelta, minuteDelta, revertFunc,
                                         jsEvent, ui, view) {
@@ -74,6 +75,7 @@ class AgendaView(grok.View):
                               { 'operation': 'drag',
                                 'dayDelta': dayDelta,
                                 'minuteDelta': minuteDelta})
+                        $('.conference-calendar').fullCalendar('refetchEvents');
                }
             }
 

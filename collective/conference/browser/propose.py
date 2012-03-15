@@ -8,6 +8,7 @@ from plone.directives import form
 from zope.component.hooks import getSite
 from zope.globalrequest import getRequest
 from zope import schema
+from datetime import timedelta
 
 class IProposalForm(ISession):
     form.widget(captcha=CaptchaFieldWidget)
@@ -40,7 +41,7 @@ class ProposalForm(form.SchemaAddForm):
         inc = getattr(self.context, 'session_increment', 0) + 1
         data['id'] = 'session-%s' % inc
         data['startDate'] = self.context.startDate
-        data['endDate'] = self.context.endDate
+        data['endDate'] = self.context.startDate + timedelta(0, 3600)
         self.context.registrant_increment = inc
         item = createContentInContainer(
             self.context,
