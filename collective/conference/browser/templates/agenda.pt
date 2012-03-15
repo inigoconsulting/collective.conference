@@ -49,6 +49,7 @@
                      $(tab).parent().removeClass('active');
                   });
                   $($('#agenda-tabs > .nav-tabs > li')[idx]).addClass('active');
+                  $('.conference-calendar').fullCalendar('refetchEvents');
                }});
          })
       </script>

@@ -114,8 +114,8 @@ class EventJson(grok.View):
         queries = [
             Eq('portal_type', 'collective.conference.session'),
             Eq('conference_rooms', room),
-            Ge('start', start),
-            Le('end', end)
+            Generic('path', {'query': '/'.join(self.context.getPhysicalPath()),
+                'depth':2})
         ]
         result = []
         for brain in catalog.evalAdvancedQuery(And(*queries)):
