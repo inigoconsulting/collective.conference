@@ -1,6 +1,18 @@
 Changelog
 =========
 
+
+1.0a2
+-------------------
+
+ * Fix anonymous submissions [kagesenshi]
+ * Added listing template [sweemeng]
+ * Added SchemaTable to help generating table from schema [kagesenshi]
+ * Added attendee list, vegetarian list, and session list [kagesenshi]
+ * Added multi-days, multi-room support [kagesenshi]
+ * Added workflows for session and participant [kagesenshi]
+ * Bunch of minor bugfixes [kagesenshi]
+
 1.0a1
 -------------------
 
