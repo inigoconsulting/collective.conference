@@ -32,11 +32,8 @@
          <div class="row-fluid">
             <div class="offset1 span12">
          <tal:c condition="view/roomName">
-         <tal:d define="month python:context.startDate.strftime('%b');
-         date python:context.startDate.strftime('%d');
-         year python:context.startDate.strftime('%Y');
-         startTime python:context.startDate.strftime('%T');
-         endTime python:context.endDate.strftime('%T');
+         <tal:d define="startDate context/startDate;
+         endDate context/endDate;
          roomName view/roomName">
          <metal:m use-macro="here/@@collective-conference-macros/macros/datebox"></metal:m>
          </tal:d>

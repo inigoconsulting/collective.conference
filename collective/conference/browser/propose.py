@@ -42,7 +42,7 @@ class ProposalForm(form.SchemaAddForm):
         data['id'] = 'session-%s' % inc
         data['startDate'] = self.context.startDate
         data['endDate'] = self.context.startDate + timedelta(0, 3600)
-        self.context.registrant_increment = inc
+        self.context.session_increment = inc
         item = createContentInContainer(
             self.context,
             "collective.conference.session", 

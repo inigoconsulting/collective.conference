@@ -68,16 +68,40 @@
 </div>
 </metal:block>
 
+
 <metal:block define-macro="datebox">
 <tal:comment replace="nothing">
    requires these vars:
-      * month 
-      * date
-      * year
-      * startTime
-      * endTime
+      * startDate
+      * endDate
       * roomName
 </tal:comment>
+<tal:block define="days python:(endDate-startDate).days >= 1">
+   <tal:block condition="days">
+      <metal:block
+      use-macro="here/@@collective-conference-macros/macros/datebox-multi"/>
+   </tal:block>
+   <tal:block condition="not:days">
+      <metal:block
+      use-macro="here/@@collective-conference-macros/macros/datebox-single"/>
+   </tal:block>
+</tal:block>
+</metal:block>
+
+<metal:block define-macro="datebox-single">
+<tal:comment replace="nothing">
+   requires these vars:
+      * startDate
+      * endDate
+      * roomName
+</tal:comment>
+<tal:block define="
+         month python:startDate.strftime('%b');
+         date python:startDate.strftime('%d');
+         year python:startDate.strftime('%Y');
+         startTime python:startDate.strftime('%T');
+         endTime python:endDate.strftime('%T');"
+         >
 <div style="border: 0px solid red; width: auto; float: right;">
    <div style="float: right;cursor: default; background: #1A2846; font-weight: bold; width: auto; padding: 0px; color: white; font-size: 13px; text-transform: uppercase; text-align:center; -moz-box-shadow: 0 1px 3px #272727; -webkit-box-shadow: 0 1px 3px #272727; box-shadow: 0 1px 3px #272727; margin-left: 8px; text-shadow: black 0 1px 1px;">
       <div style="font-size: 22px; padding:6px; background: #294172; margin: 0px;">Schedule</div>
@@ -102,4 +126,50 @@
       </tal:c>
    </div>
 </div>
+</tal:block>
+</metal:block>
+
+<metal:block define-macro="datebox-multi">
+<tal:comment replace="nothing">
+   requires these vars:
+      * startDate
+      * endDate
+      * roomName
+</tal:comment>
+<tal:block define="startMonth python:startDate.strftime('%b');
+         startDay python:startDate.strftime('%d');
+         startYear python:startDate.strftime('%Y');
+         endMonth python:endDate.strftime('%b');
+         endDay python:endDate.strftime('%d');
+         endYear python:endDate.strftime('%Y');
+         startTime python:startDate.strftime('%T');
+         endTime python:endDate.strftime('%T');"
+         >
+
+<div style="float: right;cursor: default; background: #1A2846; font-weight: bold; width: auto; padding: 0px; color: white; font-size: 13px; text-transform: uppercase; text-align:center; -moz-box-shadow: 0 1px 3px #272727; -webkit-box-shadow: 0 1px 3px #272727; box-shadow: 0 1px 3px #272727; margin-left: 8px; text-shadow: black 0 1px 1px;">
+   <div style="font-size: 22px; padding: 6px; background: #294172; margin: 0px;">Date</div>
+   <div style="line-height: 14px; padding: 8px;">
+      <div style="display: inline-block; width: 50px; border: 0px red solid;">
+         <div tal:content="startMonth">Nov</div>
+         <div style="font-size: 28px; font-weight: normal; margin-top: 6px; margin-bottom: 5px;" tal:content="startDay">04</div>
+         <div tal:content="startYear">2011</div>
+         <div style="border-top: 1px dotted #e2e2e2; padding-top: 3px; margin-top: 4px;" tal:content="startTime">08:00:00</div>
+      </div>
+      <div style="display: inline-block; width: 30px; margin-left: 10px; margin-right: 10px; border: 0px red solid; height: 50%; position: relative; top: -30px;">TO</div>
+      <div style="display: inline-block; width: 50px; border: 0px red solid;">
+         <div tal:content="endMonth">Nov</div>
+         <div style="font-size: 28px; font-weight: normal; margin-top: 6px; margin-bottom: 5px;" tal:content="endDay">06</div>
+         <div tal:content="endYear">2011</div>
+         <div style="border-top: 1px dotted #e2e2e2; padding-top: 3px; margin-top: 4px;" tal:content="endTime">18:00:00</div>
+      </div>
+   </div>
+      <tal:c condition="roomName|nothing">
+      <div style="font-size: 22px; padding:6px; background: #294172; margin: 0px;">Room</div>
+      <div style="padding-bottom: 6px;">
+         <div style="margin-top: 6px;"><strong tal:content="roomName">Auditorium</strong></div>
+      </div>
+      </tal:c>
+
+</div>
+</tal:block>
 </metal:block>
