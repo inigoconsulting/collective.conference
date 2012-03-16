@@ -13,10 +13,10 @@
    <div metal:fill-slot="content-description"></div>
    <div metal:fill-slot="content-core">
       <div class="banner">
-         <div class="row">
+         <div class="row-fluid">
             <metal:block use-macro="here/@@collective-conference-macros/macros/navbar"/>
          </div>
-            <div class="row">
+            <div class="row-fluid">
                <div class="offset1 span6">
                   <h1 tal:content="context/title"/>
                      <p style="font-size:15px" tal:content="context/description"/>
@@ -34,10 +34,10 @@
                   height small/height"/>
                </div>
             </div>
-            <div class="row">
+            <div class="row-fluid">
             </div>
          </div>
-         <div class="row">
+         <div class="row-fluid">
             <div class="offset1 span12" style="padding-top:20px">
                <div style="font-size:12px" tal:content="structure context/text"/>
                </div>

@@ -17,8 +17,8 @@
    <div metal:fill-slot="content-core">
 
       <div class="banner">
-         <div class="row">
-            <div class="navbar">
+         <div class="row-fluid">
+            <div class="navbar span12">
                <div class="navbar-inner">
                   <div class="container">
                      <a class="brand" 
@@ -29,7 +29,7 @@
             </div>
          </div>
 
-         <div class="row">
+         <div class="row-fluid">
             <div class="offset1 span12">
          <tal:c condition="view/roomName">
          <tal:d define="month python:context.startDate.strftime('%b');
