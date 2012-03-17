@@ -27,7 +27,7 @@
         <div class="span8">
           <dl class="dl-horizontal">
             <dt>Email:</dt>
-            <dd tal:content="context/email">vader@empire.com</dd>
+            <dd tal:content="python:(context.email or '').replace('@',' (at) ')">vader@empire.com</dd>
             <dt>Country:</dt>
             <dd tal:content="context/country">Tatooine</dd>
             <dt>Bio:</dt>
