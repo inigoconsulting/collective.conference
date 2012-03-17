@@ -113,10 +113,11 @@ class Participant(dexterity.Item):
 
     def sessions(self):
         catalog = getToolByName(self, 'portal_catalog')
-        return catalog({
+        result =  catalog({
             'path': {
                 'query': '/'.join(self.getConference().getPhysicalPath()),
                 'depth': 2
             }, 'portal_type': 'collective.conference.session',
             'emails': self.email
         })
+        return [i.getObject() for i in result]

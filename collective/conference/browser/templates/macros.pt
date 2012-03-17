@@ -197,3 +197,19 @@
         </tal:c>
    </tal:c>
 </metal:block>
+
+
+<metal:block define-macro="persongallery">
+<ul class="thumbnails">
+   <li class="span1" tal:repeat="person persons">
+      <div class="card thumbnail">
+            <a tal:attributes="href person/absolute_url">
+               <metal:photo use-macro="context/@@collective-conference-macros/macros/profilephoto"></metal:photo>
+            </a>
+            <div style="text-align:center">
+               <b tal:content="person/title"></b>
+            </div>
+      </div>
+   </li>
+</ul>
+</metal:block>

@@ -48,11 +48,12 @@
         </div>
         <div class="span1">&nbsp;</div>
         <div class="span11">
-           <ul>
-              <li tal:repeat="session sessions">
-                  <a tal:attributes="href session/absolute_url" tal:content="session/title"></a>
-              </li>
-           </ul>
+           <div tal:repeat="session sessions">
+              <h4><a tal:attributes="href session/absolute_url" tal:content="session/title"></a></h4>
+              <div>
+                 <p tal:content="session/description"></p>
+              </div>
+           </div>
         </div>
       </div>
       </section>

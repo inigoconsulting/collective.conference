@@ -96,4 +96,12 @@ class Session(dexterity.Item):
     grok.implements(ISession)
     grok.provides(ISession)
     
-    # Add your class methods and properties here
+    def owners(self):
+        catalog = getToolByName(self, 'portal_catalog')
+        return [i.getObject() for i in catalog({
+            'path': {
+                'query': '/'.join(self.getConference().getPhysicalPath()),
+                'depth': 2
+            }, 'portal_type': 'collective.conference.participant',
+            'emails': self.emails
+        })]

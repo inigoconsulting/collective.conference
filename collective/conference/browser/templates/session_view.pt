@@ -11,20 +11,23 @@
 
 </head>
 <body>
-   <div metal:fill-slot="content-title"></div>
    <div metal:fill-slot="content-description"></div>
 
    <div metal:fill-slot="content-core">
 
-      <div class="row-fluid">
+      <div class="row-fluid" tal:define="persons context/owners">
          <div class="span9">
             <h3>Summmary</h3>
             <div><p tal:content="here/description"/></div>
+            <tal:c condition="persons">
             <h3>Presented By</h3>
-            <tal:r repeat="speaker view/speakers">
-            <h4 tal:content="speaker/title"></h4>
-            <div><p tal:content="speaker/description"></p></div>
-            </tal:r>
+            <metal:photo use-macro="here/@@collective-conference-macros/macros/persongallery"></metal:photo>
+            </tal:c>
+            <tal:c condition="context/text">
+            <h3>Additional Information</h3>
+            <div tal:content="structure context/text">
+            </div>
+            </tal:c>
          </div>
          <div class="span3">
             <tal:c condition="view/roomName">
