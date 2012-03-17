@@ -10,3 +10,7 @@
 .navbar .container {
     width:100%;
 }
+
+.conference-session {
+    border-bottom:1px solid #eee;
+}

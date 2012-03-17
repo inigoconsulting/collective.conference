@@ -1,0 +1,44 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      metal:use-macro="here/main_template/macros/master">
+      <head>
+
+   <metal:block fill-slot="style_slot">
+   <metal:block use-macro="here/@@collective-conference-macros/macros/styles"/>
+   </metal:block>
+
+</head>
+<body>
+   <div metal:fill-slot="content-title">
+      <h1 tal:content="view/title">Listing</h1>
+   </div>
+   <div metal:fill-slot="content-description"></div>
+
+   <div metal:fill-slot="content-core">
+      <div class="row-fluid" style="border-top:1px solid #eee; margin-top:20px; padding-top:10px;padding-bottom:10px">
+         <div class="span12" tal:define="persons view/items">
+            <div class="row-fluid" style="padding-top:10px;padding-bottom:10px" tal:repeat="person persons">
+               <div class="span2" style="text-align:center;" tal:define="photoWidth python:90;
+                                             photoHeight python:117">
+                  <metal:photo use-macro="here/@@collective-conference-macros/macros/profilephoto"></metal:photo>
+               </div>
+               <div class="span7">
+                  <h2 tal:content="person/title"></h2>
+                  <p tal:content="person/description"></p>
+               </div>
+               <div class="span3">
+                  <h4>Sessions</h4>
+                  <ul class="thumbnails" tal:define="sessions person/sessions">
+                     <li class="thumbnail" tal:repeat="session sessions">
+                     <a tal:attributes="href session/absolute_url" tal:content="session/title"></a>
+                     </li>
+                  </ul>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</body>
+</html>

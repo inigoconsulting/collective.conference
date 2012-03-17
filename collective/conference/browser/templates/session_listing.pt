@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      metal:use-macro="here/main_template/macros/master">
+      <head>
+
+   <metal:block fill-slot="style_slot">
+   <metal:block use-macro="here/@@collective-conference-macros/macros/styles"/>
+   </metal:block>
+
+</head>
+<body>
+   <div metal:fill-slot="content-title">
+      <h1 tal:content="view/title">Listing</h1>
+   </div>
+   <div metal:fill-slot="content-description"></div>
+
+   <div metal:fill-slot="content-core">
+      <script tal:attributes="src string:${view/static}/equalHeights.js"></script>
+      <script>
+         $(document).ready(function () {
+            $('.conference-session').equalHeights();
+         });
+      </script>
+
+      <div class="row-fluid" style="border-top:1px solid #eee; margin-top:20px; padding-top:10px;padding-bottom:10px">
+         <div class="span12" tal:define="sessions view/items">
+            <ul class="thumbnails">
+               <li class="span3" tal:repeat="session sessions">
+            <section>
+               <div class="thumbnail conference-session">
+                  <h2><a tal:attributes="href session/absolute_url"
+                         tal:content="session/title"></a></h2>
+                  <p tal:content="session/description"></p>
+                  <p><a tal:attributes="href session/absolute_url">Read more &raquo;</a></p>
+               </div>
+            </section>
+               </li>
+            </ul>
+         </div>
+      </div>
+   </div>
+</body>
+</html>

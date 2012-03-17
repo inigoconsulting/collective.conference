@@ -82,8 +82,8 @@ class ISessionList(form.Schema):
 class SessionListingView(grok.View):
     grok.context(IConference)
     grok.template('listing')
-    grok.name('sessions')
-    grok.require('zope2.View')
+    grok.name('session-list')
+    grok.require('cmf.ModifyPortalContent')
 
     title = u'Submitted Sessions'
 

@@ -4,17 +4,17 @@ from Products.CMFCore.utils import getToolByName
 
 grok.templatedir('templates')
 
-class ParticipantListView(grok.View):
+class SessionListView(grok.View):
     grok.context(IConference)
-    grok.template('profile_listing')
-    grok.name('participants')
+    grok.template('session_listing')
+    grok.name('sessions')
 
-    title = u"Participants"
+    title = u"Sessions"
 
     def items(self):
         catalog = getToolByName(self.context, 'portal_catalog')
         brains = catalog({
-            'portal_type': 'collective.conference.participant',
+            'portal_type': 'collective.conference.session',
             'path': {
                 'query': '/'.join(self.context.getPhysicalPath()),
                 'depth': 2
