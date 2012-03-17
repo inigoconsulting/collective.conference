@@ -32,14 +32,15 @@
          </div>
       </div>
       <div class="row-fluid">
-         <div class="span9" style="padding-top:20px">
+         <div class="span12" style="padding-top:20px;">
+            <div style="float:right;padding-top:20px;margin:15px 40px;"
+               tal:define="startDate context/startDate;
+                           endDate context/endDate">
+               <metal:m use-macro="here/@@collective-conference-macros/macros/datebox"></metal:m>
+            </div>
             <div style="font-size:12px" tal:content="structure context/text"></div>
          </div>
-         <div class="span3" style="padding-top:20px"
-            tal:define="startDate context/startDate;
-                        endDate context/endDate">
-            <metal:m use-macro="here/@@collective-conference-macros/macros/datebox"></metal:m>
-         </div>
+
       </div>
    </div>
 </body>
