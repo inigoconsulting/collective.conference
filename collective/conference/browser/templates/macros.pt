@@ -181,7 +181,7 @@
    <tal:c define="photo person/photo|nothing">
      <tal:c condition="photo">
         <tal:block define="scales person/@@images;
-                       thumbnail python:scales.scale('photo', width=150)">
+                       thumbnail python:scales.scale('photo', width=150, height=195)">
         <tal:c condition="thumbnail">
               <img tal:attributes="src thumbnail/url;
                                                   height thumbnail/height;
