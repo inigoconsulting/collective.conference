@@ -39,6 +39,12 @@
 #agenda-tabs .panes {
    padding:0 40px;
 }
+
+.agenda-calendar {
+   margin:5px;
+   float:left;
+   text-align:center
+}
       </style>
       <script tal:content="structure view/script">
       </script>
@@ -72,14 +78,16 @@
             <div tal:attributes="id string:calendar-${day/id};">
                <tal:def define="curday python:day['id'] + 1">
                <h2 tal:content="string:Schedule for Day ${curday}"></h2>
-               <tal:block repeat="room context/rooms">
-               <div style="width:150px;margin:5px;float:left;text-align:center">
+               <tal:block define="rooms context/rooms;">
+               <tal:block repeat="room rooms">
+               <div class="agenda-calendar span2">
                   <h3 tal:content="room"></h3>
                   <div id="calendar-day-1-room-1"
                      class="conference-calendar"
                      tal:attributes="id string:calendar-${day/id}-${repeat/room/index}">
                   </div>
                </div>
+               </tal:block>
                </tal:block>
                <div class="visualClear"></div>
                </tal:def>
