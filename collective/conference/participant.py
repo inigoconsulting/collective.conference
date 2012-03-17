@@ -91,6 +91,40 @@ class IParticipant(form.Schema, IImageScaleTraversable):
         required=False
     )
 
+    form.fieldset('sponsorship',
+            label=u"Funding",
+            fields=['need_sponsorship', 'roomshare', 'comment']
+    )
+
+    need_sponsorship = schema.Bool(
+            title=u'Need funding',
+            description=u'''
+Check this option if you need funding to attend, and <b>visit the <a
+href="https://fedorahosted.org/fudcon-planning/wiki/FundingRequest">FUDCon
+ticket tracker</a> to make a funding request</b>. We have a limited budget and will work
+hard to fund as many people as possible. We'll use these answers to help figure
+out budgeting for the event. We are making arrangements for attendees from other
+geographic regions to encourage specific initiatives such as future FUDCon
+events, but <b>preference may otherwise be given to contributors in Asia
+Pacific.</b>
+            ''', required=False)
+
+    roomshare = schema.Bool(
+            title=u'Roomshare',
+            description=u'If you want or need a room, check this option',
+            required=False)
+
+    comment = schema.Text(
+        title=u'Comments',
+        description=u'''Fill in this field with things you need the organizers
+        to know. If you are roomsharing and already have a roommate, please
+        mention your roommate's name here''',
+        required=False
+    )
+
+
+
+
 @form.validator(field=IParticipant['photo'])
 def maxPhotoSize(value):
     if value is not None:
