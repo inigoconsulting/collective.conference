@@ -28,10 +28,14 @@
           <dl class="dl-horizontal">
             <dt>Email:</dt>
             <dd tal:content="python:(context.email or '').replace('@',' (at) ')">vader@empire.com</dd>
+            <tal:block condition="context/country">
             <dt>Country:</dt>
             <dd tal:content="context/country">Tatooine</dd>
+            </tal:block>
+            <tal:block condition="context/description">
             <dt>Bio:</dt>
             <dd><p tal:content="context/description"></p></dd>
+            </tal:block>
          </dl>
        </div>
       </div>
