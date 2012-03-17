@@ -42,33 +42,6 @@ class IConference(form.Schema, IImageScaleTraversable):
         value_type=schema.TextLine()
     )
 
-    form.fieldset("location-info",
-        label=_(u"Location"),
-        fields=['location_title', 'location_image', 'location_info']
-    )
-
-
-    location_title = schema.TextLine(
-        title=_(u"Location name"),
-        description=u'',
-        required=False,
-    )
-
-    location_image = NamedBlobImage(
-        title=_(u"Image/Photo of location"),
-        description=_(u'Preferably 940px wide and less than 400px high'),
-        required=False,
-    )
-
-    dexteritytextindexer.searchable('location_info')
-    form.widget(location_info="plone.app.z3cform.wysiwyg.WysiwygFieldWidget")
-    location_info = schema.Text(
-        title=_(u"About the location"),
-        description=u'',
-        required=False,
-    )
-
-
 # Custom content-type class; objects created for this content type will
 # be instances of this class. Use this class to add content-type specific
 # methods and properties. Put methods that are mainly useful for rendering

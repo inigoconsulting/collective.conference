@@ -15,6 +15,9 @@
       <element value="collective.conference.participant"/>
       <element value="collective.conference.session"/>
       <element value="Folder"/>
+      <element value="Document"/>
+      <element value="Collection"/>
+      <element value="Link"/>
   </property>
   <property name="allow_discussion">False</property>
 

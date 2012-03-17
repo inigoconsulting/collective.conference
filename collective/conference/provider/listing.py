@@ -7,6 +7,7 @@ from z3c.table.interfaces import IColumn
 from zope import component as zca
 from five import grok
 from zope.globalrequest import getRequest
+from plone.autoform.interfaces import OMITTED_KEY
 
 class SchemaTable(SequenceTable):
 
@@ -17,7 +18,12 @@ class SchemaTable(SequenceTable):
 
     def setUpColumns(self):
         cols = []
+        omitted_fields = list([
+            i[1] for i in self.schema.queryTaggedValue(OMITTED_KEY, []) if i[2]
+        ])
         for name, field in schema.getFieldsInOrder(self.schema):
+            if name in omitted_fields:
+                continue
             column = zca.getMultiAdapter(
                 (self.context, self.request, self, field),
                 IColumn

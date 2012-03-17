@@ -94,5 +94,6 @@ def emailsValidator(value):
 
 class Session(dexterity.Item):
     grok.implements(ISession)
+    grok.provides(ISession)
     
     # Add your class methods and properties here

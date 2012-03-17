@@ -1,0 +1,9 @@
+<tal:c condition="viewlet/is_enabled">
+   <metal:block
+   use-macro="here/@@collective-conference-macros/macros/navbar"/>
+   <tal:cond condition="context/@@plone_portal_state/anonymous">
+      <!-- include tinymce js so that anonymous can have richtext editing -->
+      <script tal:attributes="src string:${context/absolute_url}/tiny_mce.js"></script>
+      <script tal:attributes="src string:${context/absolute_url}/tiny_mce_init.js"></script>
+   </tal:cond>
+</tal:c>

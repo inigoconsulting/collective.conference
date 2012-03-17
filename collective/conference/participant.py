@@ -18,6 +18,7 @@ from plone.app.textfield import RichText
 from z3c.relationfield.schema import RelationList, RelationChoice
 from plone.formwidget.contenttree import ObjPathSourceBinder
 from Products.CMFDefault.utils import checkEmailAddress
+from Products.CMFCore.utils import getToolByName
 
 from collective.conference import MessageFactory as _
 
@@ -107,3 +108,15 @@ def emailValidator(value):
 
 class Participant(dexterity.Item):
     grok.implements(IParticipant)
+    grok.provides(IParticipant)
+
+
+    def sessions(self):
+        catalog = getToolByName(self, 'portal_catalog')
+        return catalog({
+            'path': {
+                'query': '/'.join(self.getConference().getPhysicalPath()),
+                'depth': 2
+            }, 'portal_type': 'collective.conference.session',
+            'emails': self.email
+        })

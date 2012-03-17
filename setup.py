@@ -34,6 +34,7 @@ setup(name='collective.conference',
           'collective.js.fullcalendar',
           'collective.js.jqueryui',
           'z3c.table',
+          'plone.z3ctable',
           'Products.AdvancedQuery',
           # -*- Extra requirements: -*-
       ],

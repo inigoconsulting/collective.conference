@@ -11,34 +11,28 @@
 
 </head>
 <body>
-   <div metal:fill-slot="content-title"></div>
+   <div metal:fill-slot="content-title">
+      <h1 tal:content="view/title|nothing"></h1>
+   </div>
    <div metal:fill-slot="content-description"></div>
 
    <div metal:fill-slot="content-core">
-      <div class="banner">
-         <div class="row">
-           <metal:block use-macro="here/@@collective-conference-macros/macros/navbar"/>
-         </div>
+      <tal:block define="provider view/provider;">
          <div class="row-fluid">
-           <div class="span12">
-             <h2 tal:content="view/title|nothing"></h2>
-           </div>
-         </div>
-      </div>
-         <div class="row-fluid">
-           <div class="span12" tal:define="provider view/provider">
+            <div class="span12">
              <table class="table table-condensed table-striped" tal:replace="structure provider/render">
                <thead>
-                  <th tal:repeat="title provider/headers" tal:content="title">Name</th>
+                  <th>Name</th>
                </thead>
                <tbody>
-                  <tr tal:repeat="row provider/rows">
-                     <td tal:repeat="col row" tal:content="col"></td>
+                  <tr>
+                     <td></td>
                  </tr>
                </tbody>
              </table>
            </div>
-         </div>
+        </div>
+      </tal:block>
    </div>
 </body>
 </html>

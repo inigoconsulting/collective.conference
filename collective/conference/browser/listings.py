@@ -9,10 +9,13 @@ from Products.CMFCore.utils import getToolByName
 
 grok.templatedir('templates')
 
+class IParticipantList(IParticipant):
+    form.omitted('description')
+
 class AttendeesListingView(grok.View):
     grok.context(IConference)
     grok.template('listing')
-    grok.name('attendees')
+    grok.name('participant-list')
     grok.require('cmf.ModifyPortalContent')
 
     title = 'Attendees listing'
@@ -26,7 +29,7 @@ class AttendeesListingView(grok.View):
                 'depth': 2
             }
         })
-        return TableListingProvider(self.request, IParticipant, [
+        return TableListingProvider(self.request, IParticipantList, [
             i.getObject() for i in brains
             ])
 
@@ -49,7 +52,7 @@ class VegetarianListingView(grok.View):
             }
         })
         objs = [ i.getObject() for i in brains ]
-        return TableListingProvider(self.request, IParticipant, [
+        return TableListingProvider(self.request, IParticipantList, [
             i for i in objs if i.is_vegetarian
         ])
 

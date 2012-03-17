@@ -16,41 +16,29 @@
 
    <div metal:fill-slot="content-core">
 
-      <div class="banner">
-         <div class="row-fluid">
-            <div class="navbar span12">
-               <div class="navbar-inner">
-                  <div class="container">
-                     <a class="brand" 
-                        tal:content="here/title" tal:attributes="href here/absolute_url">
-                     </a>
-                  </div>
-               </div>
-            </div>
+      <div class="row-fluid">
+         <div class="span9">
+            <h3>Summmary</h3>
+            <div><p tal:content="here/description"/></div>
+            <h3>Presented By</h3>
+            <tal:r repeat="speaker view/speakers">
+            <h4 tal:content="speaker/title"></h4>
+            <div><p tal:content="speaker/description"></p></div>
+            </tal:r>
          </div>
-
-         <div class="row-fluid">
-            <div class="offset1 span12">
-         <tal:c condition="view/roomName">
-         <tal:d define="startDate context/startDate;
-         endDate context/endDate;
-         roomName view/roomName">
-         <metal:m use-macro="here/@@collective-conference-macros/macros/datebox"></metal:m>
-         </tal:d>
-         </tal:c>
-         <h3>Summmary</h3>
-         <div><p tal:content="here/description"/></div>
-         <h3>Presented By</h3>
-         <tal:r repeat="speaker view/speakers">
-         <h4 tal:content="speaker/title"></h4>
-         <div><p tal:content="speaker/description"></p></div>
-         </tal:r>
-            </div>
+         <div class="span3">
+            <tal:c condition="view/roomName">
+            <tal:d define="startDate context/startDate;
+            endDate context/endDate;
+            roomName view/roomName">
+            <metal:m use-macro="here/@@collective-conference-macros/macros/datebox"></metal:m>
+            </tal:d>
+            </tal:c>
          </div>
-
-      <div class="visualClear"></div>
       </div>
 
-  </div>
+      <div class="visualClear"></div>
+   </div>
+
 </body>
 </html>

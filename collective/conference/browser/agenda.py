@@ -14,6 +14,8 @@ class AgendaView(grok.View):
     grok.name('agenda')
     grok.template('agenda')
 
+    title = u'Agenda'
+
     def days(self):
         result = []
         delta = self.context.endDate-self.context.startDate

@@ -1,11 +1,9 @@
 from five import grok
-from collective.conference.conference import IConference
+from collective.conference.participant import IParticipant
 
 grok.templatedir('templates')
 
 class ParticipantView(grok.View):
-    grok.context(IConference)
+    grok.context(IParticipant)
     grok.template('participant_view')
-    grok.name('participant')
-
-
+    grok.name('view')

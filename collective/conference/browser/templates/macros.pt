@@ -1,40 +1,38 @@
 <metal:block define-macro="styles">
-      <style>
-      .banner {
-        background-color: #F5F5F5;
-        background-image: -moz-linear-gradient(center top , #FFFFFF, #F5F5F5);
-        background-repeat: repeat-x;
-        border: 1px solid #DDDDDD;
-        border-radius: 3px 3px 3px 3px;
-        box-shadow: 0 1px 0 #FFFFFF inset;
-        padding:20px;
-     }
-
-     .navbar .container {
-         width:100%;
-      }
-
-      #content .navbar a.brand:link {
-         border-bottom:none;
-      }
-
-      </style> 
+   <link rel="stylesheet" tal:attributes="href
+   string:${view/static}/style.css"/>
 </metal:block>
 
 <metal:block define-macro="navbar">
-<div class="navbar"
-   tal:define="is_editable context/@@plone_context_state/is_editable"> 
+<div class="row-fluid">
+<div class="navbar span12"
+   tal:define="is_editable context/@@plone_context_state/is_editable;
+               conference context/getConference;
+               content_tabs conference/@@collective-conference-macros/content_tabs">
    <div class="navbar-inner"> 
       <div class="container"> 
          <a class="brand" 
-            tal:content="here/title" tal:attributes="href
-            here/absolute_url">
+            tal:content="conference/title" tal:attributes="href conference/absolute_url">
          </a>
-         <ul class="nav pull-right"> 
+
+         <ul class="nav pull-right" style="font-size:13px"> 
             <li class="divider-vertical"></li> 
-            <li><a tal:attributes="href string:${here/absolute_url}/agenda">Agenda</a></li> 
+            <li><a tal:attributes="href string:${conference/absolute_url}/agenda">Agenda</a></li> 
             <li class="divider-vertical"></li> 
-            <li><a tal:attributes="href string:${here/absolute_url}/locationinfo">Location</a></li> 
+            <li><a tal:attributes="href string:${conference/absolute_url}/participants">Participants</a></li> 
+
+            <tal:tabs tal:repeat="tab content_tabs">
+                  <li class="divider-vertical"></li>
+                  <li tal:define="tid tab/id"
+                  tal:attributes="id string:portaltab-${tid};">
+                  <a href=""
+                        tal:content="tab/name"
+                        tal:attributes="href tab/url;
+                                  title tab/description|nothing;">
+                  Tab Name
+                  </a></li>
+            </tal:tabs>
+
             <tal:cond condition="is_editable">
             <li class="divider-vertical"></li>
             <li class="dropdown"><a href="#"
@@ -45,17 +43,17 @@
                </a>
                <ul class="dropdown-menu">
                   <li>
-                  <a tal:attributes="href string:${context/absolute_url}/attendees">
-                     Attendees List
+                  <a tal:attributes="href string:${conference/absolute_url}/participant-list">
+                     Participant List
                   </a>
                   </li>
                   <li>
-                  <a tal:attributes="href string:${context/absolute_url}/vegetarians">
+                  <a tal:attributes="href string:${conference/absolute_url}/vegetarians">
                      Vegetarian Attendees List
                   </a>
                   </li>
                   <li>
-                  <a tal:attributes="href string:${context/absolute_url}/sessions">
+                  <a tal:attributes="href string:${conference/absolute_url}/sessions">
                      Sessions List
                   </a>
                   </li>
@@ -65,6 +63,7 @@
          </ul>    
       </div> 
    </div> 
+</div>
 </div>
 </metal:block>
 
@@ -102,7 +101,7 @@
          startTime python:startDate.strftime('%T');
          endTime python:endDate.strftime('%T');"
          >
-<div style="border: 0px solid red; width: auto; float: right;">
+<div style="border: 0px solid red; width: auto; float: left;">
    <div style="float: right;cursor: default; background: #1A2846; font-weight: bold; width: auto; padding: 0px; color: white; font-size: 13px; text-transform: uppercase; text-align:center; -moz-box-shadow: 0 1px 3px #272727; -webkit-box-shadow: 0 1px 3px #272727; box-shadow: 0 1px 3px #272727; margin-left: 8px; text-shadow: black 0 1px 1px;">
       <div style="font-size: 22px; padding:6px; background: #294172; margin: 0px;">Schedule</div>
       <div style="line-height: 14px; padding: 8px;">
@@ -146,7 +145,7 @@
          endTime python:endDate.strftime('%T');"
          >
 
-<div style="float: right;cursor: default; background: #1A2846; font-weight: bold; width: auto; padding: 0px; color: white; font-size: 13px; text-transform: uppercase; text-align:center; -moz-box-shadow: 0 1px 3px #272727; -webkit-box-shadow: 0 1px 3px #272727; box-shadow: 0 1px 3px #272727; margin-left: 8px; text-shadow: black 0 1px 1px;">
+<div style="float: left;cursor: default; background: #1A2846; font-weight: bold; width: auto; padding: 0px; color: white; font-size: 13px; text-transform: uppercase; text-align:center; -moz-box-shadow: 0 1px 3px #272727; -webkit-box-shadow: 0 1px 3px #272727; box-shadow: 0 1px 3px #272727; margin-left: 8px; text-shadow: black 0 1px 1px;">
    <div style="font-size: 22px; padding: 6px; background: #294172; margin: 0px;">Date</div>
    <div style="line-height: 14px; padding: 8px;">
       <div style="display: inline-block; width: 50px; border: 0px red solid;">
@@ -172,4 +171,29 @@
 
 </div>
 </tal:block>
+</metal:block>
+
+<metal:block define-macro="profilephoto">
+<tal:comment replace="nothing">
+   requires these vars:
+     * person (participant object)
+</tal:comment>
+   <tal:c define="photo person/photo|nothing">
+     <tal:c condition="photo">
+        <tal:block define="scales person/@@images;
+                       thumbnail python:scales.scale('photo', width=150)">
+        <tal:c condition="thumbnail">
+              <img tal:attributes="src thumbnail/url;
+                                                  height thumbnail/height;
+                                                  width thumbnail/width;"/>
+        </tal:c>
+        <tal:c condition="not:thumbnail">
+              <img tal:attributes="src string:${view/static}/avatar-default.png"/>
+        </tal:c>
+     </tal:block>
+     </tal:c>
+        <tal:c condition="not:photo">
+              <img tal:attributes="src string:${view/static}/avatar-default.png"/>
+        </tal:c>
+   </tal:c>
 </metal:block>
