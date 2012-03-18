@@ -10,7 +10,7 @@
       <metal:block use-macro="here/folder_listing/macros/content-core">
       <div metal:fill-slot="entry">
 
-         <div class="row-fluid"
+         <div class="row-fluid" style="padding-top:10px;margin-top:10px;padding-bottom:10px;margin-bottom:10px"
          tal:define="text_to_html nocall:here/@@collective-conference-macros/text_to_html;
                      item_obj item/getObject">
          <div class="span2">
