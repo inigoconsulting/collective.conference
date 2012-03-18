@@ -27,6 +27,7 @@
  </state>
  <state state_id="published" title="Published">
   <description>Visible to everyone, non-editable.</description>
+  <exit-transition transition_id="retract"/>
   <permission-map name="Access contents information" acquired="False">
    <permission-role>Anonymous</permission-role>
   </permission-map>
@@ -41,6 +42,7 @@
  </state>
  <state state_id="visible" title="Tentative">
   <exit-transition transition_id="publish"/>
+  <exit-transition transition_id="retract"/>
  </state>
  <transition transition_id="accept" title="Approve" new_state="visible" trigger="USER" before_script="" after_script="">
   <action url="%(content_url)s/content_status_modify?workflow_action=accept" category="workflow" icon="">Approve submission</action>
@@ -49,6 +51,11 @@
  </transition>
  <transition transition_id="publish" title="Confirm submission" new_state="published" trigger="USER" before_script="" after_script="">
   <action url="%(content_url)s/content_status_modify?workflow_action=publish" category="workflow" icon="">Confirm submission</action>
+  <guard>
+  </guard>
+ </transition>
+ <transition transition_id="retract" title="Retract" new_state="pending" trigger="USER" before_script="" after_script="">
+  <action url="%(content_url)s/content_status_modify?workflow_action=retract" category="workflow" icon="">Retract submission</action>
   <guard>
   </guard>
  </transition>
