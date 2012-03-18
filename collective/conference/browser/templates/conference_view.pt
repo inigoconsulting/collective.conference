@@ -12,11 +12,12 @@
    <div metal:fill-slot="content-title"></div>
    <div metal:fill-slot="content-description"></div>
    <div metal:fill-slot="content-core">
-      <div class="row-fluid banner">
+      <div class="row-fluid banner"
+         tal:define="text_to_html nocall:here/@@collective-conference-macros/text_to_html">
          <div class="span1">&nbsp;</div>
          <div class="span6">
             <h1 tal:content="context/title"></h1>
-            <p style="font-size:15px" tal:content="context/description"></p>
+            <p tal:replace="structure python:text_to_html(context.description)"></p>
             <a class="btn btn-primary btn-large"
                tal:attributes="href string:${context/absolute_url}/register">Register NOW</a>
             <a class="btn btn-primary btn-large"

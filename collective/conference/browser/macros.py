@@ -8,6 +8,7 @@ from Acquisition import aq_inner
 from Products.CMFPlone.browser.interfaces import INavigationTree
 from five import grok
 from zope.component import getMultiAdapter
+from Products.CMFCore.utils import getToolByName
 
 from Products.CMFPlone.browser.navtree import NavtreeQueryBuilder
 from plone.app.layout.navigation.interfaces import INavtreeStrategy
@@ -51,4 +52,9 @@ class Macros(BrowserView):
             'url':t['getURL'],
             'description':t['Description']
         } for t in navtree_view.navigationTree()['children']]
+
+
+    def text_to_html(self, text):
+        pt = getToolByName(self.context, 'portal_transforms')
+        return pt.convertTo('text/html', text, mimetype='text/plain').getData()
 

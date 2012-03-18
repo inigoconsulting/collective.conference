@@ -15,10 +15,11 @@
 
    <div metal:fill-slot="content-core">
 
-      <div class="row-fluid" tal:define="persons context/owners">
+      <div class="row-fluid" tal:define="persons context/owners;
+         text_to_html nocall:here/@@collective-conference-macros/text_to_html">
          <div class="span9">
             <h3>Summmary</h3>
-            <div><p tal:content="here/description"/></div>
+            <div><p tal:replace="structure python:text_to_html(context.description)"/></div>
             <tal:c condition="persons">
             <h3>Presented By</h3>
             <metal:photo use-macro="here/@@collective-conference-macros/macros/persongallery"></metal:photo>

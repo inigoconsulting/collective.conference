@@ -15,7 +15,8 @@
    <div metal:fill-slot="content-description"></div>
 
    <div metal:fill-slot="content-core">
-       <section id="profile">
+       <section id="profile" 
+            tal:define="text_to_html nocall:here/@@collective-conference-macros/text_to_html">
        <div class="page-header">
            <h3 tal:content="context/title">Name</h3>
        </div>  
@@ -34,13 +35,14 @@
             </tal:block>
             <tal:block condition="context/description">
             <dt>Bio:</dt>
-            <dd><p tal:content="context/description"></p></dd>
+            <dd><p tal:replace="structure python:text_to_html(context.description)"></p></dd>
             </tal:block>
          </dl>
        </div>
       </div>
       </section>
-      <section id="topic" tal:define="sessions context/sessions"
+      <section id="topic" tal:define="sessions context/sessions;
+                        text_to_html nocall:here/@@collective-conference-macros/text_to_html"
                         tal:condition="sessions">
       <div class="row-fluid">
         <div class="page-header">
@@ -51,7 +53,7 @@
            <div tal:repeat="session sessions">
               <h4><a tal:attributes="href session/absolute_url" tal:content="session/title"></a></h4>
               <div>
-                 <p tal:content="session/description"></p>
+                 <p tal:replace="structure python:text_to_html(session.description)"></p>
               </div>
            </div>
         </div>
