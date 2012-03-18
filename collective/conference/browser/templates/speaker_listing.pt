@@ -22,11 +22,13 @@
                text_to_html nocall:here/@@collective-conference-macros/text_to_html">
             <div class="row-fluid" style="padding-top:10px;padding-bottom:10px" tal:repeat="person persons">
                <div class="span2" style="text-align:center;" tal:define="photoWidth python:90;
-                                             photoHeight python:117">
-                  <metal:photo use-macro="here/@@collective-conference-macros/macros/profilephoto"></metal:photo>
+                  photoHeight python:117">
+                  <a tal:attributes="href person/absolute_url">
+                     <metal:photo use-macro="here/@@collective-conference-macros/macros/profilephoto"></metal:photo>
+                  </a>
                </div>
                <div class="span7">
-                  <h2 tal:content="person/title"></h2>
+                  <h2><a tal:attributes="href person/absolute_url" tal:content="person/title"></a></h2>
                   <p tal:replace="structure python:text_to_html(person.description)"></p>
                </div>
                <div class="span3">
