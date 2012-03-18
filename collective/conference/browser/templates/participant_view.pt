@@ -29,10 +29,22 @@
           <dl class="dl-horizontal">
             <dt>Email:</dt>
             <dd tal:content="python:(context.email or '').replace('@',' (at) ')">vader@empire.com</dd>
+
+            <tal:block condition="context/organization">
+            <dt>Organization / Company</dt>
+            <dd tal:content="context/organization"></dd>
+            </tal:block>
+
+            <tal:block condition="context/position">
+            <dt>Position / Role in Organization</dt>
+            <dd tal:content="context/position"></dd>
+            </tal:block>
+
             <tal:block condition="context/country">
             <dt>Country:</dt>
             <dd tal:content="context/country">Tatooine</dd>
             </tal:block>
+
             <tal:block condition="context/description">
             <dt>Bio:</dt>
             <dd><p tal:replace="structure python:text_to_html(context.description)"></p></dd>
@@ -46,7 +58,7 @@
                         tal:condition="sessions">
       <div class="row-fluid">
         <div class="page-header">
-          <h3>Topic Presented</h3>
+          <h3>Sessions</h3>
         </div>
         <div class="span1">&nbsp;</div>
         <div class="span11">

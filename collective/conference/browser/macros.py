@@ -55,6 +55,7 @@ class Macros(BrowserView):
 
 
     def text_to_html(self, text):
+        text = text or ''
         pt = getToolByName(self.context, 'portal_transforms')
         return pt.convertTo('text/html', text, mimetype='text/plain').getData()
 
