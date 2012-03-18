@@ -34,6 +34,7 @@
             <tal:c condition="view/roomName">
             <tal:d define="startDate context/startDate;
             endDate context/endDate;
+            label string:Schedule;
             roomName view/roomName">
             <metal:m use-macro="here/@@collective-conference-macros/macros/datebox"></metal:m>
             </tal:d>

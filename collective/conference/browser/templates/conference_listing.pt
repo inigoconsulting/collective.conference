@@ -26,18 +26,18 @@
             </tal:block>
             &nbsp;
          </div>
-         <div class="span7">
-
-            <h1><a tal:attributes="href item_url" tal:content="item_title_or_id"></a></h1>
-            <p tal:replace="structure python:text_to_html(item_description)"></p>
-         </div>
-         <div class="span3">
+         <div class="span10">
+         <div style="float:right">
             <div
                tal:condition="python:item_start and item_end"
                tal:define="startDate item_start;
                            endDate item_end">
                <metal:m use-macro="here/@@collective-conference-macros/macros/datebox"></metal:m>
             </div>
+         </div>
+
+            <h1><a tal:attributes="href item_url" tal:content="item_title_or_id"></a></h1>
+            <p tal:replace="structure python:text_to_html(item_description)"></p>
          </div>
       </div>
 

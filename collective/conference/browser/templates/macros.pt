@@ -79,7 +79,7 @@
       * roomName
 </tal:comment>
 <tal:block define="macros_view here/@@collective-conference-macros">
-<tal:block define="days python:macros_view.timedelta(startDate, endDate).days >= 1">
+<tal:block define="days python:macros_view.timedelta(endDate, startDate).days >= 1">
    <tal:block condition="days">
       <metal:block
       use-macro="here/@@collective-conference-macros/macros/datebox-multi"/>
@@ -108,7 +108,8 @@
          >
 <div style="border: 0px solid red; width: auto; float: left;">
    <div style="float: right;cursor: default; background: #1A2846; font-weight: bold; width: auto; padding: 0px; color: white; font-size: 13px; text-transform: uppercase; text-align:center; -moz-box-shadow: 0 1px 3px #272727; -webkit-box-shadow: 0 1px 3px #272727; box-shadow: 0 1px 3px #272727; margin-left: 8px; text-shadow: black 0 1px 1px;">
-      <div style="font-size: 22px; padding:6px; background: #294172; margin: 0px;">Schedule</div>
+      <div style="font-size: 22px; padding:6px; background: #294172; margin: 0px;"
+            tal:content="label|default">Date</div>
       <div style="line-height: 14px; padding: 8px;">
          <div style="display: inline-block; width: 50px; border: 0px red solid;">
             <div tal:content="month">Nov</div>
@@ -151,7 +152,8 @@
          >
 
 <div style="float: left;cursor: default; background: #1A2846; font-weight: bold; width: auto; padding: 0px; color: white; font-size: 13px; text-transform: uppercase; text-align:center; -moz-box-shadow: 0 1px 3px #272727; -webkit-box-shadow: 0 1px 3px #272727; box-shadow: 0 1px 3px #272727; margin-left: 8px; text-shadow: black 0 1px 1px;">
-   <div style="font-size: 22px; padding: 6px; background: #294172; margin: 0px;">Date</div>
+   <div style="font-size: 22px; padding: 6px; background: #294172; margin: 0px;"
+      tal:content="label|default">Date</div>
    <div style="line-height: 14px; padding: 8px;">
       <div style="display: inline-block; width: 50px; border: 0px red solid;">
          <div tal:content="startMonth">Nov</div>
