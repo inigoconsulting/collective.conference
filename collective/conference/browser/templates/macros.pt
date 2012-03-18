@@ -78,7 +78,8 @@
       * endDate
       * roomName
 </tal:comment>
-<tal:block define="days python:(endDate-startDate).days >= 1">
+<tal:block define="macros_view here/@@collective-conference-macros">
+<tal:block define="days python:macros_view.timedelta(startDate, endDate).days >= 1">
    <tal:block condition="days">
       <metal:block
       use-macro="here/@@collective-conference-macros/macros/datebox-multi"/>
@@ -87,6 +88,7 @@
       <metal:block
       use-macro="here/@@collective-conference-macros/macros/datebox-single"/>
    </tal:block>
+</tal:block>
 </tal:block>
 </metal:block>
 

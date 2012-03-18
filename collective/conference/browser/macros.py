@@ -13,7 +13,7 @@ from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.browser.navtree import NavtreeQueryBuilder
 from plone.app.layout.navigation.interfaces import INavtreeStrategy
 from plone.app.layout.navigation.navtree import buildFolderTree
-
+from DateTime import DateTime
 
 class NavTree(object):
     grok.implements(INavigationTree)
@@ -59,3 +59,9 @@ class Macros(BrowserView):
         pt = getToolByName(self.context, 'portal_transforms')
         return pt.convertTo('text/html', text, mimetype='text/plain').getData()
 
+    def timedelta(self, start, end):
+        if isinstance(start, DateTime):
+            start=start.asdatetime()
+        if isinstance(end, DateTime):
+            end=end.asdatetime()
+        return start-end
