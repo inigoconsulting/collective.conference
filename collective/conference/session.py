@@ -74,7 +74,8 @@ class ISession(form.Schema, IImageScaleTraversable):
 
     conference_rooms = schema.List(
         title=u'Conference Rooms',
-        value_type=schema.Choice(source=possibleRooms)
+        value_type=schema.Choice(source=possibleRooms),
+        required=False
     )
 
 @form.validator(field=ISession['emails'])
