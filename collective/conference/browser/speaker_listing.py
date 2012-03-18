@@ -18,7 +18,8 @@ class SpeakerListView(grok.View):
             'path': {
                 'query': '/'.join(self.context.getPhysicalPath()),
                 'depth': 2
-            }
+            },
+            'sort_on':'sortable_title'
         })
         return [i.getObject() for i in brains if self._has_session(i)]
 
