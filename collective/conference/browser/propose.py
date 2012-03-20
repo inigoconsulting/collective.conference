@@ -10,6 +10,12 @@ from zope.globalrequest import getRequest
 from zope import schema
 from datetime import timedelta
 
+from Products.CMFPlone.utils import _createObjectByType
+
+from Products.statusmessages.interfaces import IStatusMessage
+
+
+
 class IProposalForm(ISession):
     form.widget(captcha=CaptchaFieldWidget)
     captcha = schema.TextLine(title=u"",
@@ -43,11 +49,16 @@ class ProposalForm(form.SchemaAddForm):
         data['startDate'] = self.context.startDate
         data['endDate'] = self.context.startDate + timedelta(0, 3600)
         self.context.session_increment = inc
-        item = createContentInContainer(
-            self.context,
-            "collective.conference.session", 
-            **data
-        )
+        obj = _createObjectByType("collective.conference.session",
+                self.context, data['id'])
+        del data['captcha']
+        for k, v in data.items():
+            setattr(obj, k, v)
+        IStatusMessage(self.request).addStatusMessage(
+        'Thank you for your submission.' +
+        'Your submission is now held for approval and will appear on the ' + 
+        'site once it is approved')
+        obj.reindexObject()
         return obj
 
     def add(self, obj):

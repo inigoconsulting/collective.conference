@@ -66,6 +66,9 @@ class RegistrationForm(form.SchemaAddForm):
         else:
             portal_workflow.doActionFor(obj, 'anon_hide')
         obj.reindexObject()
+        IStatusMessage(self.request).addStatusMessage(
+            'Thank you. You are now registered.'
+        )
         return obj
 
     def add(self, obj):
