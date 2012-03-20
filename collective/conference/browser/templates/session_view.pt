@@ -11,6 +11,12 @@
 
 </head>
 <body>
+   <div metal:fill-slot="content-title"> 
+      <h1>[<span tal:replace="context/session_type"></span>]
+            <span tal:content="context/title"></span>
+      </h1> 
+   </div>
+
    <div metal:fill-slot="content-description"></div>
 
    <div metal:fill-slot="content-core">
