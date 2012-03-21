@@ -21,4 +21,4 @@ class ParticipantListView(grok.View):
             },
             'sort_on':'sortable_title'
         })
-        return list([i.getObject() for i in brains])
+        return [i.getObject() for i in brains]

@@ -37,7 +37,7 @@ class IndexColumn(Column):
     header = '#'
 
     def renderCell(self, item):
-        return str(self.table.values.index(item) + 1)
+        return '%03d' % (self.table.values.index(item) + 1)
 
 class FieldColumn(grok.MultiAdapter, Column):
     grok.provides(IColumn)
