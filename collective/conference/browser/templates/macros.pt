@@ -47,7 +47,7 @@
             <li class="dropdown"><a href="#"
                   class="dropdown-toggle"
                   data-toggle="dropdown">
-                  Administrative
+                  <b>Admin </b>
                   <b class="caret"></b>
                </a>
                <ul class="dropdown-menu">
@@ -64,6 +64,11 @@
                   <li>
                   <a tal:attributes="href string:${conference/absolute_url}/session-list">
                      All Sessions
+                  </a>
+                  </li>
+                  <li>
+                  <a tal:attributes="href string:${conference/absolute_url}/pending-session-list">
+                     Pending Sessions
                   </a>
                   </li>
                </ul>
