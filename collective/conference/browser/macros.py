@@ -72,7 +72,7 @@ class Macros(BrowserView):
              min-height:100px;
             text-align:center;
             word-wrap:break-word;
-            border-bottom:3px %s solid;
-        """ % getattr(person, 'color', '#ccc')[:7]
+            border-bottom:3px #%s solid;
+        """ % getattr(person, 'color', 'ccc')[:6]
 
         return result
