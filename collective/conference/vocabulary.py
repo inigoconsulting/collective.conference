@@ -31,7 +31,8 @@ class SessionTypes(object):
             u'Talk',
             u'Hackfest',
             u'Workshop',
-            u'Discussion'
+            u'Discussion',
+            u'Meta'
         ])
 
 grok.global_utility(SessionTypes, IVocabularyFactory,

@@ -21,4 +21,5 @@ class SessionListView(grok.View):
             },
             'sort_on':'sortable_title'
         })
-        return [i.getObject() for i in brains]
+        objs = [i.getObject() for i in brains]
+        return [i for i in objs if (i.session_type != 'Meta')]

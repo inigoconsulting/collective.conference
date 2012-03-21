@@ -98,3 +98,25 @@ class SessionListingView(grok.View):
         })
         objs = [ i.getObject() for i in brains ]
         return TableListingProvider(self.request, ISessionList, objs)
+
+
+class PendingSessionListingView(grok.View):
+    grok.context(IConference)
+    grok.template('listing')
+    grok.name('pending-session-list')
+    grok.require('cmf.ModifyPortalContent')
+
+    title = u'Pending Sessions'
+
+    def provider(self):
+        catalog = getToolByName(self.context, 'portal_catalog')
+        brains = catalog({
+            'portal_type': 'collective.conference.session',
+            'path': {
+                'query': '/'.join(self.context.getPhysicalPath()),
+                'depth': 2
+            },
+            'review_state': 'pending'
+        })
+        objs = [ i.getObject() for i in brains ]
+        return TableListingProvider(self.request, ISessionList, objs)

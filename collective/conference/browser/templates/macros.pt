@@ -11,10 +11,16 @@
                content_tabs conference/@@collective-conference-macros/content_tabs">
    <div class="navbar-inner"> 
       <div class="container"> 
+        <a class="btn btn-navbar" data-toggle="collapse" data-target="#conference-nav">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        </a>
          <a class="brand" 
             tal:content="conference/title" tal:attributes="href conference/absolute_url">
          </a>
 
+         <div class="nav-collapse" id="conference-nav">
          <ul class="nav pull-right" style="font-size:13px"> 
             <li class="divider-vertical"></li> 
             <li><a tal:attributes="href string:${conference/absolute_url}/agenda">Agenda</a></li> 
@@ -41,7 +47,7 @@
             <li class="dropdown"><a href="#"
                   class="dropdown-toggle"
                   data-toggle="dropdown">
-                  Administrative
+                  <b>Admin </b>
                   <b class="caret"></b>
                </a>
                <ul class="dropdown-menu">
@@ -60,10 +66,16 @@
                      All Sessions
                   </a>
                   </li>
+                  <li>
+                  <a tal:attributes="href string:${conference/absolute_url}/pending-session-list">
+                     Pending Sessions
+                  </a>
+                  </li>
                </ul>
                </li>
             </tal:cond>
          </ul>    
+         </div>
       </div> 
    </div> 
 </div>

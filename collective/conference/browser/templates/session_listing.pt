@@ -28,13 +28,16 @@
          <div class="span12" tal:define="sessions view/items;
             text_to_html nocall:here/@@collective-conference-macros/text_to_html">
             <ul class="thumbnails">
-               <li class="span3" tal:repeat="session sessions">
+               <li style="width:240px" tal:repeat="session sessions">
             <section>
                <div class="thumbnail conference-session">
-                  <h2><a tal:attributes="href session/absolute_url"
-                         tal:content="session/title"></a></h2>
+                  <h2><a tal:attributes="href session/absolute_url">
+                        [<span tal:replace="session/session_type"></span>] 
+                        <span tal:replace="session/title"></span></a></h2>
                   <p tal:replace="structure python:text_to_html(session.description)"></p>
-                  <p><a tal:attributes="href session/absolute_url">Read more &raquo;</a></p>
+                  <p style="text-align:right">
+                     <a class="btn btn-primary" tal:attributes="href session/absolute_url">Read more &raquo;</a>
+                  </p>
                </div>
             </section>
                </li>
