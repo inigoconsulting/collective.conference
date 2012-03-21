@@ -81,14 +81,14 @@ class ISession(form.Schema, IImageScaleTraversable):
     form.widget(color="collective.z3cform.colorpicker.colorpickeralpha.ColorpickerAlphaFieldWidget")
     color = schema.TextLine(
         title=u'Agenda Background Color',
-        default=u'#3366CC',
+        default=u'3366CC',
         required=False
     )
 
     form.widget(textColor="collective.z3cform.colorpicker.colorpickeralpha.ColorpickerAlphaFieldWidget")
     textColor = schema.TextLine(
         title=u'Agenda Text Color',
-        default=u'#ffffff',
+        default=u'ffffff',
         required=False
     )
 

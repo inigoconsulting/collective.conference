@@ -73,6 +73,6 @@ class Macros(BrowserView):
             text-align:center;
             word-wrap:break-word;
             border-bottom:3px #%s solid;
-        """ % getattr(person, 'color', 'ccc')[:6]
+        """ % getattr(person, 'color', 'cccccc')[:6]
 
         return result
