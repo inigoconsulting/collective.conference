@@ -71,5 +71,6 @@ class TableListingProvider(object):
         table = SchemaTable(self.objs, self.request, self.schema, 
             { 'table': 'table table-condensed table-striped'}
         )
+        table.startBatchingAt = 1000 # disable batching for now
         table.update()
         return table.render()
