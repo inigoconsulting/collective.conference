@@ -17,7 +17,7 @@ class SchemaTable(SequenceTable):
         self.cssClasses = cssClasses
 
     def setUpColumns(self):
-        cols = []
+        cols = [IndexColumn(self.context, self.request, self)]
         omitted_fields = list([
             i[1] for i in self.schema.queryTaggedValue(OMITTED_KEY, []) if i[2]
         ])
@@ -31,6 +31,13 @@ class SchemaTable(SequenceTable):
             cols.append(column)
         return cols
 
+class IndexColumn(Column):
+    grok.provides(IColumn)
+
+    header = '#'
+
+    def renderCell(self, item):
+        return str(self.table.values.index(item) + 1)
 
 class FieldColumn(grok.MultiAdapter, Column):
     grok.provides(IColumn)
