@@ -27,7 +27,8 @@ class AttendeesListingView(grok.View):
             'path': {
                 'query': '/'.join(self.context.getPhysicalPath()),
                 'depth': 2
-            }
+            },
+            'sort_on':'created'
         })
         return TableListingProvider(self.request, IParticipantList, [
             i.getObject() for i in brains
