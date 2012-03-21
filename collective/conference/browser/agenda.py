@@ -107,8 +107,8 @@ class EventJson(grok.View):
                 'end':event.endDate.isoformat(),
                 'allDay': False,
                 'url': event.absolute_url(),
-                'color': getattr(event, 'color', '#3366CC'),
-                'textColor': getattr(event, 'textColor', '#ffffff')
+                'color': getattr(event, 'color', '#3366CC')[:7],
+                'textColor': getattr(event, 'textColor', '#ffffff')[:7]
             })
         return json.dumps(result)
 
