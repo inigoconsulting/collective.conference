@@ -13,6 +13,7 @@ class AgendaView(grok.View):
     grok.context(IConference)
     grok.name('agenda')
     grok.template('agenda')
+    grok.require('zope2.View')
 
     title = u'Agenda'
 
@@ -90,6 +91,7 @@ class AgendaView(grok.View):
 class EventJson(grok.View):
     grok.context(IConference)
     grok.name('events.json')
+    grok.require('zope2.View')
 
     def render(self):
         self.request.response.setHeader('Content-Type','text/json')

@@ -11,6 +11,7 @@ class SessionView(grok.View):
     grok.context(ISession)
     grok.name('view')
     grok.template('session_view')
+    grok.require('zope2.View')
 
     def roomName(self):
         rooms = getattr(self.context, 'conference_rooms', [])

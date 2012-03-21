@@ -8,6 +8,7 @@ class SpeakerListView(grok.View):
     grok.context(IConference)
     grok.template('speaker_listing')
     grok.name('speakers')
+    grok.require('zope2.View')
 
     title = u"Speakers"
 

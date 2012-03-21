@@ -8,6 +8,7 @@ class ParticipantListView(grok.View):
     grok.context(IConference)
     grok.template('profile_listing')
     grok.name('participants')
+    grok.require('zope2.View')
 
     title = u"Participants"
 
