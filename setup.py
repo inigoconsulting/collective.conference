@@ -36,6 +36,7 @@ setup(name='collective.conference',
           'z3c.table',
           'plone.z3ctable',
           'Products.AdvancedQuery',
+          'collective.z3cform.colorpicker'
           # -*- Extra requirements: -*-
       ],
       entry_points="""

@@ -14,7 +14,8 @@ class IProposalForm(ISession):
     form.widget(captcha=CaptchaFieldWidget)
     captcha = schema.TextLine(title=u"",
                             required=False)
-    form.omitted('conference_rooms')
+    form.omitted('conference_rooms', 'color', 'textColor')
+
 
 @form.validator(field=IProposalForm['captcha'])
 def validateCaptca(value):

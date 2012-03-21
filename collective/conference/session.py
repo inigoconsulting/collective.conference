@@ -78,6 +78,20 @@ class ISession(form.Schema, IImageScaleTraversable):
         required=False
     )
 
+    form.widget(color="collective.z3cform.colorpicker.colorpicker.ColorpickerFieldWidget")
+    color = schema.TextLine(
+        title=u'Agenda Background Color',
+        default=u'#3366CC',
+        required=False
+    )
+
+    form.widget(textColor="collective.z3cform.colorpicker.colorpicker.ColorpickerFieldWidget")
+    textColor = schema.TextLine(
+        title=u'Agenda Text Color',
+        default=u'#ffffff',
+        required=False
+    )
+
 @form.validator(field=ISession['emails'])
 def emailsValidator(value):
     for email in value:
