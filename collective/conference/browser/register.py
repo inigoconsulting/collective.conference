@@ -13,6 +13,7 @@ from z3c.form.error import ErrorViewSnippet
 from Products.CMFPlone.utils import _createObjectByType
 from Products.CMFCore.utils import getToolByName
 
+from Products.statusmessages.interfaces import IStatusMessage
 
 class IRegistrationForm(IParticipant):
 
@@ -26,6 +27,8 @@ class IRegistrationForm(IParticipant):
     form.widget(captcha=CaptchaFieldWidget)
     captcha = schema.TextLine(title=u"",
                             required=False)
+
+    form.omitted('color')
 
 @form.validator(field=IRegistrationForm['captcha'])
 def validateCaptca(value):

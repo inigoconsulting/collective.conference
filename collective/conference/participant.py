@@ -122,6 +122,13 @@ Pacific.</b>
         required=False
     )
 
+    form.widget(color="collective.z3cform.colorpicker.colorpicker.ColorpickerFieldWidget")
+    color = schema.TextLine(
+        title=u'Person Color Tag',
+        default=u'#cccccc',
+        required=False
+    )
+
 
 
 

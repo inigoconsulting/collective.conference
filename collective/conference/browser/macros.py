@@ -65,3 +65,14 @@ class Macros(BrowserView):
         if isinstance(end, DateTime):
             end=end.asdatetime()
         return start-end
+
+    def person_inline_css(self, person):
+
+        result = """
+             min-height:100px;
+            text-align:center;
+            word-wrap:break-word;
+            border-bottom:3px %s solid;
+        """ % getattr(person, 'color', '#ccc')
+
+        return result

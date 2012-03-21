@@ -230,7 +230,10 @@
 <ul class="thumbnails" tal:define="photoWidth python:50;
                                    photoHeight python:65">
    <li style="width:90px" tal:repeat="person persons">
-      <div class="card thumbnail" style="min-height:100px;text-align:center;word-wrap:break-word">
+   <div class="card thumbnail" 
+         tal:define="inline_css nocall:context/@@collective-conference-macros/person_inline_css"
+         tal:attributes="style python:inline_css(person)"
+         style="min-height:100px;text-align:center;word-wrap:break-word">
             <a tal:attributes="href person/absolute_url">
                <metal:photo use-macro="context/@@collective-conference-macros/macros/profilephoto"></metal:photo>
             </a>
